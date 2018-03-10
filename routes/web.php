@@ -14,6 +14,7 @@
      * public routs group
      * */
         //
+
         Route::group(['namespace'=>'Pub', 'middleware'=>'guest'],function (){
             Route::get('/',['as'=>'public.news.index' , 'uses'=>'Pub/NewsController@index']);
             //
