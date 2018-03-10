@@ -1,0 +1,328 @@
+
+a{
+    color: #3a537a;
+}
+.main-header{
+    padding-top: 10px;
+}
+.logo{
+    width: 205px;
+    height: 129px;
+
+}
+.logo-text{
+    text-align: left;
+    color: #3a537a;
+    font-family: 'Marck Script', cursive;
+}
+.right-side-header{
+    float: right;
+    text-align: right;
+    /*	text-shadow: 2px 2px;*/
+}
+.right-side-header a{
+    text-decoration: none;
+    font-family: 'Alice', serif;
+    color: #2E4260;
+    margin: 10px;
+}
+.main-navbar{
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    font-family: 'Alice', serif;
+}
+.main-navbar li a{
+    color: #2E4260;
+}
+.main-photo{
+    /*  width: 2048px;*/
+    /*  height: 500px;
+      min-height: 500px;
+      max-height: 500px;*/
+}
+.body-content{
+    padding-top: 20px;
+}
+.main-column{
+
+}
+.right-cloumn a{
+    font-family: 'Alice', serif;
+    color: #1C283A;
+}
+.news-block{
+    padding: 20px;
+    font-family: 'Alice', serif;
+}
+.news-block a{
+    font-family: 'Alice', serif;
+    font-size: 14pt;
+    text-decoration: none;
+    color: black;
+}
+.news-item{
+    padding: 20px;
+}
+.news-item h3{
+    font-family: 'Marck Script', cursive;
+    color: #3a537a;
+    font-size: 21pt;
+/*    padding-top: 10px;*/
+    padding-bottom: 5px;
+}
+.news-item a{
+    display: block;
+    font-family: 'Alice', serif;
+    text-align: center;
+    color: #1C283A;
+    padding-bottom: 10px;
+}
+.news-maintext{
+    font-family: 'Alice', serif;
+    color: #1C283A;
+}
+footer{
+    padding-top: 50px;
+}
+.footer-links{
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}
+/*social network styles in footer*/
+.social_networks{
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+}
+.social_networks a{
+    margin: 20px;
+}
+.footer-block{
+    float: left;
+}
+.footer-block li{
+    list-style-type: none;
+}
+/*pagination*/
+.centered{
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}
+/*expos styles*/
+.virtual-expo-item{
+    padding-top: 20px;
+}
+/*book presentations styles*/
+.presentation-item{
+    padding-top: 20px;
+}
+/*meeting styles*/
+.meeting-item{
+    padding-top: 20px;
+}
+/*fade-effect styles*/
+.carousel-fade .carousel-inner .item {
+    opacity: 0;
+    transition-property: opacity;
+}
+
+.carousel-fade .carousel-inner .active {
+    opacity: 1;
+}
+
+.carousel-fade .carousel-inner .active.left,
+.carousel-fade .carousel-inner .active.right {
+    left: 0;
+    opacity: 0;
+    z-index: 1;
+}
+
+.carousel-fade .carousel-inner .next.left,
+.carousel-fade .carousel-inner .prev.right {
+    opacity: 1;
+}
+
+.carousel-fade .carousel-control {
+    z-index: 2;
+}
+@media all and (transform-3d), (-webkit-transform-3d) {
+    .carousel-fade .carousel-inner > .item.next,
+    .carousel-fade .carousel-inner > .item.active.right {
+        opacity: 0;
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+    .carousel-fade .carousel-inner > .item.prev,
+    .carousel-fade .carousel-inner > .item.active.left {
+        opacity: 0;
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+    .carousel-fade .carousel-inner > .item.next.left,
+    .carousel-fade .carousel-inner > .item.prev.right,
+    .carousel-fade .carousel-inner > .item.active {
+        opacity: 1;
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+}
+/*dropdown*/
+.open > .dropdown-menu {
+    -webkit-transform: scale(1, 1);
+    transform: scale(1, 1);
+    opacity:1;
+}
+
+.dropdown-menu {
+    opacity:.3;
+    -webkit-transform-origin: top;
+    transform-origin: top;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    -webkit-transform: scale(1, 0);
+    transition: all 0.3s linear;
+    -webkit-transition: all 0.3s linear;
+    margin: 10px;
+}
+
+/*vertical carousel styles*/
+.vertical .carousel-inner {
+    height: 100%;
+}
+
+.carousel.vertical .item {
+    -webkit-transition: 0.2s ease-in-out top;
+    -moz-transition: 0.2s ease-in-out top;
+    -ms-transition: 0.2s ease-in-out top;
+    -o-transition: 0.2s ease-in-out top;
+    transition: 0.2s ease-in-out top;
+}
+
+.carousel.vertical .active {
+    top: 0;
+}
+
+.carousel.vertical .next {
+    top: 300px;
+}
+
+.carousel.vertical .prev {
+    top: -300px;
+}
+
+.carousel.vertical .next.left,
+.carousel.vertical .prev.right {
+    top: 0;
+}
+
+.carousel.vertical .active.left {
+    top: -300px;
+}
+
+.carousel.vertical .active.right {
+    top: 300px;
+}
+
+.carousel.vertical .item {
+    left: 0;
+}
+/*
+news gallery*/
+.carousel-control.left, .carousel-control.right {
+    background-image:none;
+}
+
+.img-responsive{
+    width:100%;
+}
+
+@media (min-width: 992px ) {
+    .carousel-inner .active.left {
+        left: -25%;
+    }
+    .carousel-inner .next {
+        left:  25%;
+    }
+    .carousel-inner .prev {
+        left: -25%;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px ) {
+    .carousel-inner .active.left {
+        left: -33.3%;
+    }
+    .carousel-inner .next {
+        left:  33.3%;
+    }
+    .carousel-inner .prev {
+        left: -33.3%;
+    }
+    .active > div:first-child {
+        display:block;
+    }
+    .active > div:first-child + div {
+        display:block;
+    }
+    .active > div:last-child {
+        display:none;
+    }
+}
+
+@media (max-width: 767px) {
+    .carousel-inner .active.left {
+        left: -100%;
+    }
+    .carousel-inner .next {
+        left:  100%;
+    }
+    .carousel-inner .prev {
+        left: -100%;
+    }
+    .active > div {
+        display:none;
+    }
+    .active > div:first-child {
+        display:block;
+    }
+}
+.news_item_carousel{
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}
+/*float button*/
+#myBtn {
+    display: none; /* Hidden by default */
+    position: fixed; /* Fixed/sticky position */
+    bottom: 20px; /* Place the button at the bottom of the page */
+    right: 30px; /* Place the button 30px from the right */
+    z-index: 99; /* Make sure it does not overlap */
+    border: none; /* Remove borders */
+    outline: none; /* Remove outline */
+    background-color: #8883ff; /* Set a background color */
+    color: white; /* Text color */
+    cursor: pointer; /* Add a mouse pointer on hover */
+    padding: 15px; /* Some padding */
+    border-radius: 10px; /* Rounded corners */
+}
+
+#myBtn:hover {
+    background-color: #555; /* Add a dark-grey background on hover */
+}
+.ic-tab{
+    font-family: 'Alice', serif;
+    color: #1C283A;
+}
+.ic{
+    color: #3a537a;
+    font-family: 'Alice', serif;
+    text-decoration: #1C283A;
+}
+.anniversary{
+    height: 433px !important;
+}
+
