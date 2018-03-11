@@ -16,7 +16,7 @@
         //
 
         Route::group(['namespace'=>'Pub', 'middleware'=>'guest'],function (){
-            Route::get('/',['as'=>'public.news.index' , 'uses'=>'NewsController@index']);
+            Route::get('/',['as'=>'public.news.index' , 'uses'=>' NewsController@index']);
             //
             Route::resource('message','VirtualReferenceController');
             //
