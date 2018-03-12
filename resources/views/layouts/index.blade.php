@@ -145,6 +145,11 @@
             <img class="main-photo" src="img/main_page/lib6.jpg">
             <div class="carousel-caption">
             </div>
+        </div><!-- other items -->
+        <div class="item">
+            <img class="main-photo" src="img/main_page/lib7.jpg">
+            <div class="carousel-caption">
+            </div>
         </div>
     </div>
 </div>
