@@ -4,8 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-
-class CreateArticleTables extends Migration
+class CreateEventsTables extends Migration
 {
     /**
      * Run the migrations.
@@ -15,25 +14,24 @@ class CreateArticleTables extends Migration
     public function up()
     {
         //
-        Schema::create('article_categories', function (Blueprint $table){
+        Schema::create('event_categories', function (Blueprint $table){
             $table->increments('id');
             $table->text('value');
             $table->timestamps();
         });
         //
-        Schema::create('articles', function (Blueprint $table){
+        Schema::create('events', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('header');
-            $table->string('main_image')->nullable();
-            $table->text('preview')->nullable();
-            $table->string('slug');
-            $table->longText('main_text')->nullable();
-            $table->date('anniversary')->nullable();
+            $table->string('title');
+            $table->string('text');
+            $table->date('start_date');
+            $table->date('end_date');
             $table->timestamps();
+            //
             //
             $table->integer('category_id')->unsigned();
             $table->foreign('category_id')->references('id')
-                ->on('article_categories')->onDelete('cascade');
+                ->on('event_categories')->onDelete('cascade');
         });
     }
 
