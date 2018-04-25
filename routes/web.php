@@ -15,8 +15,8 @@
      * */
         //
 
-        Route::group(['namespace'=>'Pub', 'middleware'=>'guest'],function (){
-            Route::get('/',['as'=>'public.news.index' , 'uses'=>' NewsController@index']);
+    Route::group(['namespace'=>'Pub', 'middleware'=>'guest'],function (){
+            Route::get('/',['as'=>'index','uses'=>'IndexController@index']);
             //
             Route::resource('message','VirtualReferenceController');
             //
@@ -75,31 +75,10 @@
             Route::get('gallery', function (){
                 return view('pages.gallery');
             });
-
-        });
+    });
 
         //News and index controller
-        Route::group(['namespace'=>'Pub', 'middleware'=>'guest', 'prefix'=>'news'], function (){
-            Route::get('/', ['as'=>'public.news.index' , 'uses'=>'NewsController@index']);
-            Route::get('/{slug}',['as'=>'public.news.show' , 'uses'=>'NewsController@show']);
-        });
-        //Expos controller
-        Route::group(['namespace'=>'Pub','middleware'=>'guest','prefix'=>'expos'],function(){
-            Route::get('/', ['as'=>'public.pages.v_expos' , 'uses'=>'ExpoController@index']);
-            Route::get('/{slug}',['as'=>'public.expos.show' , 'uses'=>'ExpoController@show']);
-        });
-        //Meetings controller
-/*        Route::group(['namespace'=>'Pub','middleware'=>'guest','prefix'=>'meets'], function (){
-            Route::get('/', ['as'=>'public.meets.index' , 'uses'=>'MeetsController@index']);
-            Route::get('/{slug}',['as'=>'public.meets.show' , 'uses'=>'MeetsController@show']);
-        });*/
-        //Presentation controller
-        /*Route::group(['namespace'=>'Pub', 'middleware'=>'guest','prefix'=>'presentations'],function (){
-            Route::get('/', ['as'=>'public.presentations.index' , 'uses'=>'PresentationsController@index']);
-            Route::get('/{slug}',['as'=>'public.presentations.show' , 'uses'=>'PresentationsController@show']);
-        });*/
-        //Route for redirect auth controller to index page
-        Route::group(['prefix'=>'users','middleware'=>'guest'],function(){
+    Route::group(['prefix'=>'users','middleware'=>'guest'],function(){
            Route::auth();
         });
 /*
@@ -114,9 +93,12 @@
             return view('admin.dashboard');
         });
 
-        Route::get('articles',function(){
-            return view('admin.articles');
-        });
+        Route::resource('articles','ArticleController');
+
+        Route::get('/articles/create/{id}',['as'=>'articles.createByCategory','uses'=>'ArticleController@createByCategory']);
+
+        Route::resource('article_categories','ArticleCategoryController');
+
         Route::get('events', ['as'=>'events','uses'=>'EventController@index']);
 
         Route::get('analytics',function(){
@@ -137,55 +119,13 @@
         Route::get('feedback',function(){
             return view('admin.feedback');
         });
-        //News
-        Route::resource('news','NewsController');
-        Route::get('news/{id}/delete',['uses' => 'NewsController@delete', 'as' => 'news.delete']);
-        //Anniversaries
-        Route::resource('anniversaries',  'AnniversaryController');
-        Route::get('anniversaries/{id}/delete',
-            ['uses' => 'AnniversaryController@delete', 'as' => 'anniversaries.delete']);
         //Books
         Route::resource('books','BooksController');
         Route::get('book/{id}/delete',//todo delete
             ['uses']);
-        //Expos
-        Route::resource('expos','ExpoController');
-        Route::get('expo/{id}/delete',//todo delete
-                ['uses']);
-        //Meetings
-        Route::resource('meetings', 'MeetingController');
-        Route::get('meeting/{id}/delete',//todo delete
-            ['uses']);
-        //Presentations
-        Route::resource('presentations','PresentationController');
-        Route::get('presentation/{id}/delete',//todo delete
-            ['uses']);
-        //Promotions
-        Route::resource('promotions','PromotionsController');
-        Route::get('expo/{id}/delete',//todo delete
-            ['uses']);
-        //Virtual expos
-        Route::resource('v_expos','VirtualExpoController');
-        Route::get('v_expo/{id}/delete',//todo delete
-            ['uses']);
-        //Catalog
-        Route::resource('catalog','CatalogController');
-        Route::get('catalog/{id}/delete',//todo delete
-            ['uses']);
-
         //Image upload for WYSIWYG
         Route::post('image/upload','Settings\ImageController@uploadNewsImages');
 
-        //Admin panel service settings routes
-        Route::group(['prefix'=>'admin/settings', 'namespace'=>'Settings'],function (){
-            //
-            Route::get('/',function (){
-                return view('admin.root_settings');
-            });
-            //
-            Route::resource('article_categories','ArticleCategoryController');
-            Route::resource('book_categories','BookCategoryController');
-        });
     });
 
 

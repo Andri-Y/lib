@@ -14,8 +14,13 @@ class IndexController extends Controller
 {
     //
     public function index(){
-        $news = Article::whereCategoryId('1')->with('photos')->paginate(9);
-        $anniversaries = Article::get_anniversaries();
+        $news = Article::whereCategoryId('1')
+            ->with('photos')
+            ->orderBy('created_at', 'desc')
+            ->paginate(9);
+        $anniversaries = Article::whereCategoryId('2')->
+        with('photos')->
+        get();
         $books = Book::all();
         return view('pages.index')
             ->with('news', $news)

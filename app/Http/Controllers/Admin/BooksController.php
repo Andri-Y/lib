@@ -10,7 +10,7 @@ use App\Language;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class BooksController extends Controller
+class BooksController extends Controller implements ResourceController
 {
     public function index(){
         $books = Book::with('authors')->get();
@@ -113,10 +113,10 @@ class BooksController extends Controller
         return view('admin.tags.edit',['tag'=>$tag]);
     }
     //
-    public function update(Request $request, $id)
+    public function update($id)
     {
         $tag=Tag::find($id);
-        $tag->update($request->all());
+        $tag->update(request()->all());
         $tag->save();
         return back()->with('message','Теґ змінено');
     }
@@ -126,5 +126,10 @@ class BooksController extends Controller
         $tag=Tag::find($id);
         $tag->delete();
         return redirect()->back()->with('message',"Теґ ".$tag->value." видалено");
+    }
+
+    public function show($slug)
+    {
+        // TODO: Implement show() method.
     }
 }

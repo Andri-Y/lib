@@ -86,7 +86,7 @@ return array(
             'debug'     => 'Monolog\Logger::addDebug',
             'info'      => 'Monolog\Logger::addInfo',
             'notice'    => 'Monolog\Logger::addNotice',
-            'warning'   => 'Monolog\Logger::addWarning',
+            'make_link'   => 'Monolog\Logger::addWarning',
             'error'     => 'Monolog\Logger::addError',
             'critical'  => 'Monolog\Logger::addCritical',
             'alert'     => 'Monolog\Logger::addAlert',

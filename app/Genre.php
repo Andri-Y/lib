@@ -18,6 +18,12 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Genre whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Genre whereValue($value)
  * @mixin \Eloquent
+ * @property string $slug
+ * @property string $name
+ * @property string|null $info
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Genre whereInfo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Genre whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Genre whereSlug($value)
  */
 class Genre extends Model
 {

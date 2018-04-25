@@ -180,7 +180,7 @@
                 @yield('news')
             </div>
             <nav>
-                {{ $news->render()}}
+                {{--{{ $news->render()}}--}}
             </nav>
         </div>
         <!-- right column -->

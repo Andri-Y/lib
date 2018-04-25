@@ -41,8 +41,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Article findSimilarSlugs(\Illuminate\Database\Eloquent\Model $model, $attribute, $config, $slug)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Article whereMainImage($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Article whereSlug($value)
+ * @property-read \App\ArticleCategory $article_categories
  */
-class Article extends Model
+class Article extends Model implements AbstractRootModel
 {
     use Sluggable;
 
@@ -62,37 +63,14 @@ class Article extends Model
             ]
         ];
     }
-    /*
-     * DTO functions for several article types:
-     *  news, anniversaries, expos, presentations, meetings
-    */
-    //get news (ID=1)
-    public static function get_news(){
-        $news_link = Article::with('photos')->whereCategoryId('1');//todo not working
-        return null;
-    }
-
-    public static function get_news_item($id){
-        return Article::whereId($id)->with('photos')->with('tags')->first();
-    }
-
-    public static function get_anniversaries ()
-    {
-        return Article::whereCategoryId('2')->with('photos')->
-        get()->sortBy('anniversary');
-    }
-
-
     /*Database relations functions*/
+    public function article_categories(){
+        return $this->hasOne(ArticleCategory::class);
+    }
     //
     public function tags(){
         return $this->belongsToMany(Tag::class);
     }
-    //
-    public function article_category(){
-        return $this->hasOne(ArticleCategory::class);
-    }
-    //
     public function books(){
         return $this->belongsToMany(Book::class);
     }
@@ -103,5 +81,14 @@ class Article extends Model
     //
     public function videos(){
         return $this->belongsToMany(Video::class);
+    }
+    //Root methods
+    public static function getAllByCategory($category)
+    {
+        return Article::whereCategoryId($category->id);
+    }
+    public static function getOneByCategory($id, $category)
+    {
+        // TODO: Implement getOneByCategory() method.
     }
 }

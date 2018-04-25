@@ -18,6 +18,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Language whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Language whereValue($value)
  * @mixin \Eloquent
+ * @property string $slug
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Language whereSlug($value)
  */
 class Language extends Model
 {

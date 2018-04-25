@@ -659,7 +659,7 @@
             ':fuelpump:',
             ':vertical_traffic_light:',
             ':traffic_light:',
-            ':warning:',
+            ':make_link:',
             ':construction:',
             ':beginner:',
             ':atm:',

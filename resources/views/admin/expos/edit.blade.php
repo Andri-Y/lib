@@ -12,7 +12,7 @@
     </div>
     <div class="panel-footer clearfix">
         {!! Form::open(['method'  => 'DELETE', 'route' => ['expos.destroy', $expo->slug]]) !!}
-            {!! Form::submit('Видалити', ['class' => 'btn btn-warning confirm-delete']) !!}
+            {!! Form::submit('Видалити', ['class' => 'make_link']) !!}
         {{Form::close()}}
     </div>
     {!! Form::model($expo, ['route' => ['expos.update', $expo->slug] ,'method' => 'put', 'files' => true]) !!}

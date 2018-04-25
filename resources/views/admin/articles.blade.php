@@ -1,7 +1,4 @@
 @extends("layouts.admin")
-@section('title')
-    <title>Новини</title>
-@endsection
 @section('meta')
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,8 +18,6 @@
             <li><a href="#">Вихід</a></li>
         </ul>
     </li>
-@endsection
-@section('content')
 @endsection
 @section('scripts')
     <script src="{{URL::asset('https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js')}}"></script>

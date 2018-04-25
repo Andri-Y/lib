@@ -1,0 +1,1 @@
+To create link from storage to public - use command: php artisan storage:link

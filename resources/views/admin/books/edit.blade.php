@@ -12,7 +12,7 @@
     </div>
     <div class="panel-footer clearfix">
         {!! Form::open(['method'  => 'DELETE', 'route' => ['books.destroy', $book->slug]]) !!}
-            {!! Form::submit('Видалити', ['class' => 'btn btn-warning confirm-delete']) !!}
+            {!! Form::submit('Видалити', ['class' => 'make_link']) !!}
         {{Form::close()}}
     </div>
     {!! Form::model($book, ['route' => ['books.update', $book->slug] ,'method' => 'put', 'files' => true]) !!}

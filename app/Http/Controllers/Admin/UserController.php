@@ -7,7 +7,7 @@ use App\User;
 use Auth;
 use App\Http\Controllers\Controller;
 
-class UserController extends Controller
+class UserController extends Controller implements ResourceController
 {
     //
     public function storeAdminUser(CreateFirstAdminRequest $request)
@@ -22,5 +22,40 @@ class UserController extends Controller
         Auth::login($user);
 
         return redirect()->route('news.index');
+    }
+
+    public function index()
+    {
+        // TODO: Implement index() method.
+    }
+
+    public function store($object)
+    {
+        // TODO: Implement store() method.
+    }
+
+    public function create($object)
+    {
+        // TODO: Implement create() method.
+    }
+
+    public function destroy($object)
+    {
+        // TODO: Implement destroy() method.
+    }
+
+    public function update($object)
+    {
+        // TODO: Implement update() method.
+    }
+
+    public function show($object)
+    {
+        // TODO: Implement show() method.
+    }
+
+    public function edit($object)
+    {
+        // TODO: Implement edit() method.
     }
 }

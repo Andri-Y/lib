@@ -1,4 +1,4 @@
-@extends('admin.layout')
+@extends('admin.articles')
 
 @section('meta-title', 'Редагувати новину')
 
@@ -12,10 +12,10 @@
     </div>
     <div class="panel-footer clearfix">
         {!! Form::open(['method'  => 'DELETE', 'route' => ['news.destroy', $news_item->slug]]) !!}
-            {!! Form::submit('Видалити', ['class' => 'btn btn-warning confirm-delete']) !!}
+            {!! Form::submit('Видалити', ['class' => 'make_link']) !!}
         {{Form::close()}}
     </div>
-    {!! Form::model($news_item, ['route' => ['news.update', $news_item->slug] ,'method' => 'put', 'files' => true]) !!}
+    {!! Form::model($news_item, ['route' => ['articles', $news_item->slug] ,'method' => 'put', 'files' => true]) !!}
         <div class="row">
             <div class="col-lg-12">
                 <div class="form-group">

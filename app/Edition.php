@@ -18,6 +18,12 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Edition whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Edition whereValue($value)
  * @mixin \Eloquent
+ * @property string $slug
+ * @property string $name
+ * @property string|null $info
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Edition whereInfo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Edition whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Edition whereSlug($value)
  */
 class Edition extends Model
 {

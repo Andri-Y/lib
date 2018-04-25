@@ -6,7 +6,7 @@ use App\Tag;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class TagsController extends Controller
+class TagsController extends Controller implements ResourceController
 {
     public function index(){
         $tags = Tag::all();
@@ -17,9 +17,9 @@ class TagsController extends Controller
         return view('admin.tags.create');
     }
     //
-    public function store(Request $request)
+    public function store()
     {
-        Tag::create($request->all());
+        Tag::create(request()->all());
         return back()->with('message','Теґ успішно збережено');
     }
     //
@@ -29,10 +29,10 @@ class TagsController extends Controller
         return view('admin.tags.edit',['tag'=>$tag]);
     }
     //
-    public function update(Request $request, $id)
+    public function update($id)
     {
         $tag=Tag::find($id);
-        $tag->update($request->all());
+        $tag->update(request()->all());
         $tag->save();
         return back()->with('message','Теґ змінено');
     }
@@ -42,5 +42,10 @@ class TagsController extends Controller
         $tag=Tag::find($id);
         $tag->delete();
         return redirect()->back()->with('message',"Теґ ".$tag->value." видалено");
+    }
+
+    public function show($slug)
+    {
+        // TODO: Implement show() method.
     }
 }

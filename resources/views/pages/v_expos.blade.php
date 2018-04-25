@@ -162,7 +162,7 @@
                                 <div class="thumbnail">
 
                                     <div class="caption">
-                                        <a href="{{URL::route('public.news.show',$expo->slug)}}">{{$expo->header}}</a>
+                                        <a href="{{URL::route('articles',$expo->slug)}}">{{$expo->header}}</a>
                                         <hr>
                                         <img class="img-responsive" src="{{Storage::url($expo->main_image)}}"/>
                                         <h6>{{$expo->updated_at->format('d.m.y')}}</h6>

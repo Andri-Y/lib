@@ -11,12 +11,12 @@ interface ResourceController
 
     public function create();
 
-    public function destroy();
+    public function destroy($object);
 
-    public function update($slug);
+    public function update($object);
 
-    public function show($slug);
+    public function show($object);
 
-    public function edit($slug);
+    public function edit($object);
 
 }

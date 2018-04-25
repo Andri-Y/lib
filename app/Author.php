@@ -18,6 +18,12 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Author whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Author whereValue($value)
  * @mixin \Eloquent
+ * @property string $slug
+ * @property string $name
+ * @property string|null $bio
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Author whereBio($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Author whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Author whereSlug($value)
  */
 class Author extends Model
 {

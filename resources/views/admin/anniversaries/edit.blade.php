@@ -12,7 +12,7 @@
     </div>
     <div class="panel-footer clearfix">
         {!! Form::open(['method'  => 'DELETE', 'route' => ['anniversaries.destroy', $anniversary->id]]) !!}
-            {!! Form::submit('Видалити', ['class' => 'btn btn-warning confirm-delete']) !!}
+            {!! Form::submit('Видалити', ['class' => 'make_link']) !!}
         {{Form::close()}}
     </div>
     {!! Form::model($anniversary, ['route' => ['anniversaries.update', $anniversary->id] ,'method' => 'put', 'files' => true]) !!}

@@ -39,22 +39,22 @@ class EventController extends Controller implements ResourceController
         // TODO: Implement create() method.
     }
 
-    public function destroy()
+    public function destroy($object)
     {
         // TODO: Implement destroy() method.
     }
 
-    public function update($slug)
+    public function update($object)
     {
         // TODO: Implement update() method.
     }
 
-    public function show($slug)
+    public function show($object)
     {
         // TODO: Implement show() method.
     }
 
-    public function edit($slug)
+    public function edit($object)
     {
         // TODO: Implement edit() method.
     }

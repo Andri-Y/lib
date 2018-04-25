@@ -1,4 +1,4 @@
-$(function() {
+$(document).ready((function() {
     // Bootstrap
     $('#bootstrap-editor').wysihtml5();
 
@@ -9,7 +9,7 @@ $(function() {
 		{ name: 'basicstyles', items: [ 'Bold', 'Italic' ] }
 	]});
     $( 'textarea#ckeditor_full' ).ckeditor({width:'98%', height: '150px'});
-});
+}));
 
 // Tiny MCE
 tinymce.init({

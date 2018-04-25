@@ -33,7 +33,7 @@
 <div class="page-content">
     <div class="row">
         <div class="col-md-3">
-            <div class="sidebar content-box" style="display: block;box-shadow: 2px 2px;">
+            <div class="sidebar content-box" id="main-menu" style="display: block;box-shadow: 2px 2px;">
                 <ul class="nav">
                     <!-- Main menu -->
                     <li class="{{ Request::is('admin/dashboard*') ? 'current' : '' }}">
@@ -93,7 +93,7 @@
                 </ul>
             </div>
         </div>
-        @yield('content')
+            @yield('content')
     </div>
 </div>
 <footer style="">
