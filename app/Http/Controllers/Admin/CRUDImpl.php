@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 
-interface ResourceController
+interface CRUDImpl
 {
     public function index();
 

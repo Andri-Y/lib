@@ -7,7 +7,7 @@ use App\User;
 use Auth;
 use App\Http\Controllers\Controller;
 
-class UserController extends Controller implements ResourceController
+class UserController extends Controller implements CRUDImpl
 {
     //
     public function storeAdminUser(CreateFirstAdminRequest $request)

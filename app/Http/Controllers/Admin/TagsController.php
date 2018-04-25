@@ -6,7 +6,7 @@ use App\Tag;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class TagsController extends Controller implements ResourceController
+class TagsController extends Controller implements CRUDImpl
 {
     public function index(){
         $tags = Tag::all();
