@@ -9,7 +9,7 @@
 namespace App;
 
 
-interface AbstractRootModel
+interface RootModelImpl
 {
     public static function getAllByCategory($category);
 

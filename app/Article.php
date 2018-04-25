@@ -43,7 +43,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Article whereSlug($value)
  * @property-read \App\ArticleCategory $article_categories
  */
-class Article extends Model implements AbstractRootModel
+class Article extends Model implements RootModelImpl
 {
     use Sluggable;
 
