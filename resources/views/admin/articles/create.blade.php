@@ -62,11 +62,18 @@
                                         'placeholder' => 'Основний текст']) !!}
                 </div>
             </div>
-            <div class="form-group" id="imagers">
-
-            </div>
         </div>
     {!! Form::close() !!}
+        <div id="popup1" class="overlay">
+            <div class="popup">
+                <a class="close" href="#">&times;</a>
+                <div class="content">
+                    <div class="form-group" id="imagers">
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
 @section('left_sidebar')
@@ -77,7 +84,10 @@
                 <div class="panel-body">
                     <div class="form-group">
                         <button class="btn btn-primary" onclick="addNew()">
-                            <span class="glyphicon glyphicon-plus"></span>
+                            <a class="button" href="#popup1">
+                                <span class="glyphicon glyphicon-plus">
+                                </span>
+                            </a>
                         </button>
                     </div>
                 </div>
