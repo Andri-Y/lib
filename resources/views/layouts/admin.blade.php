@@ -92,6 +92,8 @@
                     </li>
                 </ul>
             </div>
+
+            @yield('left_sidebar')
         </div>
             @yield('content')
     </div>
