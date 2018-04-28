@@ -28,11 +28,13 @@ class ArticleController extends Controller implements CRUDMethods
         $article->preview = substr(request()->input('preview'),0,155);
         $article->main_text = request()->input('main_text');
         $article->save();
-        $photos = Photo::with('articles')->whereIsAttached(false)->get();
+        $photos = Photo::whereIsAttached(false)->get();
         foreach ($photos as $photo) {
             $photo->is_attached = true;
             $photo->save();
-            $photo->articles()->attach($article);
+            $nulArticle= new Article();
+            $nulArticle->photos()->detach($photo);
+            $article->photos()->attach($photo);
         }
         return redirect()->route('articles.index');
     }

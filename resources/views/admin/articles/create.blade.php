@@ -26,7 +26,14 @@
             <div class="col-lg-12">
                 <div class="panel panel-success">
                     <div class="panel-heading">
-                        <p>Для створення {{$category->name}} заповніть усі поля та натисніть "Зберегти"</p>
+                        <h5>Для створення {{$category->name}}:</h5>
+                        <ol>
+                            <li> Заповніть текстові дані</li>
+                            <li> Прикірпіть фотографію</li>
+                            <li> Відредагуйте і збережіть фотографію</li>
+                            <li> Для додавання декількох фотографій - повторіть операції 2 і 3</li>
+                            <li> Збережіть статтю, натиснувши кнопку "Зберегти"</li>
+                        </ol>
                     </div>
                     <div class="panel-footer">
                         <div class="row">
@@ -70,10 +77,19 @@
 @section('left_sidebar')
             <div class="panel panel-default">
                 <div class="panel-heading">
+                    Робота з фото:
+                </div>
+                <div class="panel-body">
+
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
                     Прикріпити зображення:
                 </div>
                 <div class="panel-body">
                     <div class="form-group">
+                        <h6>Додати</h6>
                         <button class="btn btn-primary" onclick="addNew()">
                                 <span class="glyphicon glyphicon-plus" style="color: white;">
                                 </span>
