@@ -406,13 +406,13 @@ if (!RedactorPlugins) var RedactorPlugins = {};
         fileSelector.onFileSelected(fileSelectedHandler);
         // ---- /File selector ----
 
-        // ---- Image preview ----
+        // ---- Photo preview ----
         var $preview = $('<div class="imager-preview">' +
           '<img class="imager-preview-image">' +
           '</div>');
 
         $modalView.append($preview);
-        // ---- /Image preview ----
+        // ---- /Photo preview ----
 
         var qualitySelector = new QualitySelector(imagerInstance, this.opts.ImagerJs.quality);
         $modalView.append(qualitySelector.getElement());

@@ -24,7 +24,7 @@ jQuery(document).ready(function($) {
                 break;
         }
     });
-    // Image Input File Preview
+    // Photo Input File Preview
     readURL = function(input) {
         var el = $(input);
         if (el.parents('.fileUpload').hasClass('multiple') && input.files) {

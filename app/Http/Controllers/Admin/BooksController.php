@@ -10,7 +10,7 @@ use App\Language;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class BooksController extends Controller implements CRUDImpl
+class BooksController extends Controller implements CRUDMethods
 {
     public function index(){
         $books = Book::with('authors')->get();

@@ -40,5 +40,5 @@ window.ImagerJsGerman = {
   'Rotate 90 left': '90 Grad nach links drehen',
   'Rotate 90 right': '90 Grad nach rechts drehen',
 
-  'Image is too big and could cause very poor performance.': 'Image is too big and could cause very poor performance.'
+  'Image is too big and could cause very poor performance.': 'Photo is too big and could cause very poor performance.'
 };

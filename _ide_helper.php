@@ -12778,7 +12778,7 @@ namespace Intervention\Image\Facades {
         }
         
         /**
-         * Initiates an Image instance from different input types
+         * Initiates an Photo instance from different input types
          *
          * @param mixed $data
          * @return \Intervention\Image\Image 

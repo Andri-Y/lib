@@ -38,7 +38,7 @@ jQuery.trumbowyg = {
             unorderedList: 'Unordered list',
             orderedList: 'Ordered list',
 
-            insertImage: 'Insert Image',
+            insertImage: 'Insert Photo',
             link: 'Link',
             createLink: 'Insert link',
             unlink: 'Remove link',

@@ -7,7 +7,7 @@ use App\ArticleCategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class ArticleCategoryController extends Controller implements CRUDImpl
+class ArticleCategoryController extends Controller implements CRUDMethods
 {
     //
     public function index()

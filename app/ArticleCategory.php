@@ -17,6 +17,10 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\ArticleCategory whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\ArticleCategory whereValue($value)
  * @mixin \Eloquent
+ * @property string $name
+ * @property int $na
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ArticleCategory whereNa($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ArticleCategory whereName($value)
  */
 class ArticleCategory extends Model
 {

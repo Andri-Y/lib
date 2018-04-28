@@ -43,7 +43,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Article whereSlug($value)
  * @property-read \App\ArticleCategory $article_categories
  */
-class Article extends Model implements RootModelImpl
+class Article extends Model implements GlobalMethods
 {
     use Sluggable;
 
@@ -90,5 +90,8 @@ class Article extends Model implements RootModelImpl
     public static function getOneByCategory($id, $category)
     {
         // TODO: Implement getOneByCategory() method.
+    }
+    public static function getWithId($article){
+        return Article::whereMainText($article->main_text)->firstOrFail();
     }
 }

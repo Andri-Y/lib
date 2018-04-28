@@ -256,7 +256,7 @@
 			en: {
 				html: 'HTML',
 				video: 'Insert Video',
-				image: 'Insert Image',
+				image: 'Insert Photo',
 				table: 'Table',
 				link: 'Link',
 				link_insert: 'Insert link',
@@ -301,7 +301,7 @@
 				left: 'Left',
 				right: 'Right',
 				center: 'Center',
-				image_web_link: 'Image Web Link',
+				image_web_link: 'Photo Web Link',
 				text: 'Text',
 				mailto: 'Email',
 				web: 'URL',

@@ -4,12 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\Article;
 use App\ArticleCategory;
+use App\Photo;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Image;
+use Storage;
 
-class ArticleController extends Controller implements CRUDImpl
+class ArticleController extends Controller implements CRUDMethods
 {
-
     public function index()
     {
          return view('admin.articles.index')->
@@ -21,20 +23,39 @@ class ArticleController extends Controller implements CRUDImpl
     public function store()
     {
         $article = new Article(['header'=>request()->input('header')]);
-        $article->category_id = request()->input('id');
+        $article->category_id = request()->input('category_id');
         $article->header = request()->input('header');
         $article->preview = substr(request()->input('preview'),0,155);
         $article->main_text = request()->input('main_text');
         $article->save();
-
+        $photos = Photo::with('articles')->whereIsAttached(false)->get();
+        foreach ($photos as $photo) {
+            $photo->is_attached = true;
+            $photo->save();
+            $photo->articles()->attach($article);
+        }
         return redirect()->route('articles.index');
+    }
+    function saveImages()
+    {
+        $image = request()->get('imageData');
+        $fullName = md5(time() . uniqid()) . ".jpg";
+        $path = 'images/' . $fullName;
+        Storage::disk('public')->put($path, base64_decode($image));
+        $photo = new Photo();
+        $photo->path = Storage::url($path);
+        $photo->is_attached = false;
+        $photo->save();
+        $article = new Article();
+        $article->photos()->attach($photo);
+        return response()->json($photo->path);
     }
     public function create()
     {
     }
     public function createByCategory($id)
     {
-        $category = ArticleCategory::whereId($id)->first();
+        $category = ArticleCategory::whereId($id)->firstOrFail();
         return view('admin.articles.create')->with('category', $category);
     }
 

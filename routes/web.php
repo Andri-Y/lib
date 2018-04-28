@@ -93,11 +93,16 @@
             return view('admin.dashboard');
         });
 
-        Route::resource('articles','ArticleController');
-
-        Route::get('/articles/create/{id}',['as'=>'articles.createByCategory','uses'=>'ArticleController@createByCategory']);
-
         Route::resource('article_categories','ArticleCategoryController');
+        Route::resource('articles','ArticleController');
+        Route::get('/articles/create/{id}', [
+            'as'=>'articles.createByCategory',
+            'uses'=>'ArticleController@createByCategory'
+        ]);
+        Route::post('articles/add/image',[
+            'as' => 'articles.add.image',
+            'uses' => 'ArticleController@saveImages'
+        ]);
 
         Route::get('events', ['as'=>'events','uses'=>'EventController@index']);
 
@@ -123,7 +128,7 @@
         Route::resource('books','BooksController');
         Route::get('book/{id}/delete',//todo delete
             ['uses']);
-        //Image upload for WYSIWYG
+        //Photo upload for WYSIWYG
         Route::post('image/upload','Settings\ImageController@uploadNewsImages');
 
     });

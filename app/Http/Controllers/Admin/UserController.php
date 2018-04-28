@@ -7,7 +7,7 @@ use App\User;
 use Auth;
 use App\Http\Controllers\Controller;
 
-class UserController extends Controller implements CRUDImpl
+class UserController extends Controller implements CRUDMethods
 {
     //
     public function storeAdminUser(CreateFirstAdminRequest $request)
@@ -29,12 +29,12 @@ class UserController extends Controller implements CRUDImpl
         // TODO: Implement index() method.
     }
 
-    public function store($object)
+    public function store()
     {
         // TODO: Implement store() method.
     }
 
-    public function create($object)
+    public function create()
     {
         // TODO: Implement create() method.
     }

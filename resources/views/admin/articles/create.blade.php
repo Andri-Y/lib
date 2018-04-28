@@ -1,6 +1,8 @@
 @extends('admin.articles')
 
-@section('meta-title', 'Додати статтю')
+@section('meta')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+@endsection
 
 @section('styles')
     <link href="{{URL::asset('bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
@@ -13,9 +15,8 @@
             margin-left: 350px;*/
         }
     </style>
-    <link rel="stylesheet" href="
-        {{URL::asset('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')}}
-            ">
+    <link rel="stylesheet"
+          href="{{URL::asset('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')}}">
 @endsection
 
 @section('content')
@@ -62,19 +63,9 @@
                                         'placeholder' => 'Основний текст']) !!}
                 </div>
             </div>
+            <div class="form-group" id="imagers"></div>
         </div>
     {!! Form::close() !!}
-        <div id="popup1" class="overlay">
-            <div class="popup">
-                <a class="close" href="#">&times;</a>
-                <div class="content">
-                    <div class="form-group" id="imagers">
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 @endsection
 @section('left_sidebar')
             <div class="panel panel-default">
@@ -84,10 +75,8 @@
                 <div class="panel-body">
                     <div class="form-group">
                         <button class="btn btn-primary" onclick="addNew()">
-                            <a class="button" href="#popup1">
-                                <span class="glyphicon glyphicon-plus">
+                                <span class="glyphicon glyphicon-plus" style="color: white;">
                                 </span>
-                            </a>
                         </button>
                     </div>
                 </div>
@@ -146,36 +135,32 @@
             },
             Save: {
                 upload: true,
-                uploadFunction: function (imageId, imageData, callback) {
-                    // Here should be the code to upload image somewhere
-                    // to Azure, Amazon S3 or similar. When upload completes we will have
-                    // the url of uploaded image. Then call the function callback(image_url)
-                    // to notify ImagerJs that image has been uploaded to the server
-                    //
-                    // Make sure that returned path is on the same domain that imagerJs was loaded from
-                    // or contains proper access-control headers.
-                    //
-                    // for demo we just use some wallpaper
-                    var imager = this;
+                uploadFunction: function (imageId, imageData, callback){
+                        // Here should be the code to upload image somewhere
+                        // to Azure, Amazon S3 or similar. When upload completes we will have
+                        // the url of uploaded image. Then call the function callback(image_url)
+                        // to notify ImagerJs that image has been uploaded to the server
+                        //
+                        // Make sure that returned path is on the same domain that imagerJs was loaded from
+                        // or contains proper access-control headers.
 
-                    //setTimeout(function() {
-                    //))  callback('/example/wallpaper-2997883.jpg');
-                    //}, 500); // emulate server call
-
-                    console.log('uploading ' + imageId);
+                        console.log('uploading ' + imageId);
 
                     var data = imageData.replace(/^data:image\/(png|jpg|jpeg);base64,/, '');
                     var dataJson = '{ "imageId": "' + imageId + '", "imageData" : "' + data + '" }';
 
                     $.ajax({
-                        url: 'https://www.imagerjs.com/api/upload/image',
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        url: '{{route('articles.add.image')}}',
                         dataType: 'json',
                         data: dataJson,
                         contentType: 'application/json; charset=utf-8',
                         type: 'POST',
                         success: function(imageUrl) {
                             callback(imageUrl); // assuming that server returns an `imageUrl` as a response
-                            console.log('uploading success: ' + imageUrl);
+                            console.log(imageUrl);
                         },
                         error: function (xhr, status, error) {
                             console.log(error);

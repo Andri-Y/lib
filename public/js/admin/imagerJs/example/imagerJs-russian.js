@@ -40,5 +40,5 @@ window.ImagerJsRussian = {
   'Rotate 90 left': 'Повернуть на 90° влево',
   'Rotate 90 right': 'Повернуть на 90° вправо',
 
-  'Image is too big and could cause very poor performance.': 'Image is too big and could cause very poor performance.'
+  'Image is too big and could cause very poor performance.': 'Photo is too big and could cause very poor performance.'
 };

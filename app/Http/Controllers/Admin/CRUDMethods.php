@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 
-interface CRUDImpl
+interface CRUDMethods
 {
+
     public function index();
 
     public function store();

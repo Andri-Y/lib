@@ -3012,7 +3012,7 @@ var ImagerJs = {
     'Rotate 90 left': 'Rotate 90° left',
     'Rotate 90 right': 'Rotate 90° left',
 
-    'Image is too big and could cause very poor performance.': 'Image is too big and could cause very poor performance.'
+    'Image is too big and could cause very poor performance.': 'Photo is too big and could cause very poor performance.'
   };
 
   namespace.t = function (textString) {
@@ -3360,7 +3360,7 @@ var ImagerJs = {
     }
 
     //region prepare image
-    // Image needs some preparations before it could be used by imager.
+    // Photo needs some preparations before it could be used by imager.
     // Fix EXIF rotation data, make image smaller on slow devices etc.
     _this.fixImageSizeAndRotation(_this.$imageElement)
       .then(function(imageData) {
@@ -3382,7 +3382,7 @@ var ImagerJs = {
    * scales image down if it's too large.
    *
    * @param {HTMLImageElement} $image
-   * @returns {jQuery.Deferred.<string>} Image data base64 string
+   * @returns {jQuery.Deferred.<string>} Photo data base64 string
    */
   Imager.prototype.fixImageSizeAndRotation = function ($image) {
     // first of all we need to avoid HUGE problems that safari has when displaying
@@ -3521,7 +3521,7 @@ var ImagerJs = {
 
         var newHeight = scalePercent * canvas.height / 100;
 
-        _this.log('Image is bigger than we could handle, resizing to', newWidth, newHeight);
+        _this.log('Photo is bigger than we could handle, resizing to', newWidth, newHeight);
 
         util.resizeImage(canvas,
           canvas.width, canvas.height, newWidth, newHeight);
@@ -3622,7 +3622,7 @@ var ImagerJs = {
     if (sizeInBytes > this.options.imageSizeForPerformanceWarning) {
       util.setOverlayMessage(
         this.$editContainer,
-        'Image is too big and could cause very poor performance.',
+        'Photo is too big and could cause very poor performance.',
         'default',
         'Ok',
         function () {
@@ -3885,7 +3885,7 @@ var ImagerJs = {
    * More information about interpolation here:
    * http://stackoverflow.com/questions/17861447/html5-canvas-drawimage-how-to-apply-antialiasing
    *
-   * @param {HTMLImageElement} $img Image to draw
+   * @param {HTMLImageElement} $img Photo to draw
    * @param ctx           Canvas context to draw on
    * @param tempCtx       Temporary canvas context to draw on interpolation steps
    * @param sourceLeft    Source image x coordinate

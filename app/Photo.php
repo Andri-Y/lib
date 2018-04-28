@@ -23,48 +23,15 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Photo whereImage($value)
  * @property int $is_main
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Photo whereIsMain($value)
+ * @property string $path
+ * @property int $isAttached
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Photo whereIsAttached($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Photo wherePath($value)
+ * @property int $is_attached
  */
 class Photo extends Model
 {
-    /*
-     * function group to manipulate with main photo of objects (Article, Book, Gallery)
-     *@return Photo */
-
-    /**
-     * @param $owner_object
-     * @return mixed
-     */
-    public static function get_main_photo($owner_object){
-        return $owner_object->photos()->where('is_main','=',true)->first();
-
-    }
-    /**
-     * @param $image
-     * @return Photo
-     */
-    public static function save_main_photo($main_image){
-        $main_photo = new Photo();
-        $main_photo->image = $main_image->path();
-        $main_photo->is_main = true;
-        $main_photo->save();
-        return $main_photo;
-    }
-    /**
-     * @param $owner_object
-     */
-    public static function delete_main_photo($owner_object){
-        //
-        $photo = Photo::get_main_photo($owner_object);
-        if($photo->is_main = true || $photo->image = $owner_object->main_image){
-            //physical delete file
-            \File::delete(public_path().$owner_object->main_image);
-            //delete file from database
-            $owner_object->photos()->detach($owner_object->id);
-            $photo->delete();
-        }
-    }
-    /*//*/
-
+    
     public function tags(){
         return $this->belongsToMany(Tag::class);
     }

@@ -9,10 +9,12 @@
 namespace App;
 
 
-interface RootModelImpl
+interface GlobalMethods
 {
     public static function getAllByCategory($category);
 
-    public static function getOneByCategory($id,$category);
+    public static function getOneByCategory($object, $category);
+
+    public static function getWithId($object);
 
 }

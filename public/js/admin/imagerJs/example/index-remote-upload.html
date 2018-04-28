@@ -80,7 +80,7 @@
 		  console.log('uploading ' + imageId);
 		  
 		  var data = imageData.replace(/^data:image\/(png|jpg|jpeg);base64,/, '');
-		  var dataJson = '{ "imageId": "' + imageId + '", "imageData" : "' + data + '" }';
+		  var dataJson = '{ "imageId": "' + imageId + '", "imageData" : "' + imageData + '" }';
 		
           $.ajax({
             url: 'https://www.imagerjs.com/api/upload/image',

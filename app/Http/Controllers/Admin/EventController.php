@@ -3,7 +3,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Event;
 use MaddHatter\LaravelFullcalendar\Facades\Calendar;
-class EventController extends Controller implements CRUDImpl
+class EventController extends Controller implements CRUDMethods
 {
     public function index()
     {

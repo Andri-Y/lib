@@ -21,13 +21,13 @@
         langs: {
             // jshint camelcase:false
             en: {
-                base64: 'Image as base64',
+                base64: 'Photo as base64',
                 file: 'File',
                 errFileReaderNotSupported: 'FileReader is not supported by your browser.',
                 errInvalidImage: 'Invalid image file.'
             },
             fr: {
-                base64: 'Image en base64',
+                base64: 'Photo en base64',
                 file: 'Fichier'
             },
             cs: {

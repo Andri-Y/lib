@@ -46,7 +46,7 @@
     'Rotate 90 left': 'Rotate 90° left',
     'Rotate 90 right': 'Rotate 90° left',
 
-    'Image is too big and could cause very poor performance.': 'Image is too big and could cause very poor performance.'
+    'Image is too big and could cause very poor performance.': 'Photo is too big and could cause very poor performance.'
   };
 
   namespace.t = function (textString) {

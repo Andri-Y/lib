@@ -17,9 +17,9 @@ class CreateContentTables extends Migration
         Schema::create('photos', function (Blueprint $table){
             //
             $table->increments('id');
-            $table->string('image');
-            $table->boolean('is_main')->default(false);
+            $table->string('path');
             $table->timestamps();
+            //
         });
         //
         Schema::create('videos', function (Blueprint $table){
