@@ -15,8 +15,7 @@
             margin-left: 350px;*/
         }
     </style>
-    <link rel="stylesheet"
-          href="{{URL::asset('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')}}">
+    <link rel="stylesheet" href="{{URL::asset('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')}}">
 @endsection
 
 @section('content')

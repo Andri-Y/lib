@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.4.36 on 2018-04-21 22:58:43.
+ * Generated for Laravel 5.4.36 on 2018-04-28 19:31:32.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -5221,9 +5221,9 @@ namespace Illuminate\Support\Facades {
          * @return Boolean Whether the record has been processed
          * @static 
          */ 
-        public static function warning($message, $context = array())
+        public static function make_link($message, $context = array())
         {
-            return \Monolog\Logger::warning($message, $context);
+            return \Monolog\Logger::make_link($message, $context);
         }
         
         /**
@@ -5276,6 +5276,19 @@ namespace Illuminate\Support\Facades {
         public static function emergency($message, $context = array())
         {
             return \Monolog\Logger::emergency($message, $context);
+        }
+        
+        /**
+         * Log a warning message to the logs.
+         *
+         * @param string $message
+         * @param array $context
+         * @return void 
+         * @static 
+         */ 
+        public static function warning($message, $context = array())
+        {
+            \Illuminate\Log\Writer::warning($message, $context);
         }
         
         /**
@@ -12778,7 +12791,7 @@ namespace Intervention\Image\Facades {
         }
         
         /**
-         * Initiates an Photo instance from different input types
+         * Initiates an Image instance from different input types
          *
          * @param mixed $data
          * @return \Intervention\Image\Image 
