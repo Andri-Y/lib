@@ -27,7 +27,7 @@ class ImageController extends Controller
         if(!Storage::exists($path)){
             Storage::put($path, (string) $image->encode());
             //
-            $photo = new Photo();
+            $photo = new Image();
             $photo->image = $path;
             $photo->updated_at = null;
             $photo->is_main = false;
@@ -39,7 +39,7 @@ class ImageController extends Controller
             ];
         }
         else
-            $photo = Photo::whereImage('$path')->first();
+            $photo = Image::whereImage('$path')->first();
         return [
             'success'=> true,
             'path'=> Storage::url($photo->image)
