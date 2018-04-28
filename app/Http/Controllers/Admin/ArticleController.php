@@ -38,7 +38,7 @@ class ArticleController extends Controller implements CRUDMethods
         }
         return redirect()->route('articles.index');
     }
-    function saveImages()
+    public function saveImages()
     {
         $image = request()->get('imageData');
         $fullName = md5(time() . uniqid()) . ".jpg";
