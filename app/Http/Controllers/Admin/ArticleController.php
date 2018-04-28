@@ -7,7 +7,6 @@ use App\ArticleCategory;
 use App\Photo;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Image;
 use Storage;
 
 class ArticleController extends Controller implements CRUDMethods

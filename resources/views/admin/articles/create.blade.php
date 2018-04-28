@@ -160,8 +160,6 @@
                         // Make sure that returned path is on the same domain that imagerJs was loaded from
                         // or contains proper access-control headers.
 
-                        console.log('uploading ' + imageId);
-
                     var data = imageData.replace(/^data:image\/(png|jpg|jpeg);base64,/, '');
                     var dataJson = '{ "imageId": "' + imageId + '", "imageData" : "' + data + '" }';
 
@@ -175,15 +173,12 @@
                         contentType: 'application/json; charset=utf-8',
                         type: 'POST',
                         success: function(imageUrl) {
-                            callback(imageUrl); // assuming that server returns an `imageUrl` as a response
-                            console.log(imageUrl);
+                            callback(imageUrl);
                         },
                         error: function (xhr, status, error) {
-                            console.log(error);
+                            console.error(error);
                         }
                     });
-
-
                 }
             }
         };
