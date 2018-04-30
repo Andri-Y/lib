@@ -60,7 +60,7 @@
                 </div>
             </div>
             <div class="col-lg-12">
-                {!! Form::hidden('id', $category->id) !!}
+                {!! Form::hidden('category_id', $category->id) !!}
                 <div class="form-group">
                     {!! Form::textarea('preview', null, ['class' => 'form-control',
                      'placeholder' => 'короткий огляд '.$category->name]) !!}

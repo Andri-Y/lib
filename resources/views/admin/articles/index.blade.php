@@ -84,11 +84,8 @@
             </div>
         </div>
         <div class="row" style="margin-bottom: 20px; background-color: rgba(255,255,255,0.8)">
-            <div class="col-md-2">
-                <h4 style="margin-left: 20px;">Створити новину </h4>
-            </div>
             <div class="col-md-10">
-                <div class="btn-group">
+                <div class="btn-group" style="margin-left: 120px;">
                     <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
                         Додати <span class="caret"></span>
                     </button>
@@ -107,18 +104,38 @@
                     <tr>
                         <th>Заголовок</th>
                         <th>Створено</th>
+                        <th>Оновлено</th>
+                        <th>Редагувати</th>
+                        <th>Видалити</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($articles as $article)
                         <tr>
                             <td>
-                                <a href="#">
-                                    {{ str_limit($article->header, 40) }}
-                                </a>
+                                {{ $article->header }}
                             </td>
                             <td>
                                 {{ $article->created_at->format('d.m.Y \o\ H:i') }}
+                            </td>
+                                                        <td>
+                                {{ $article->updated_at->format('d.m.Y \o\ H:i') }}
+                            </td>
+
+                            <td>
+                                <a class="btn btn-warning btn-sm" href="{{
+                                route('articles.edit', $article) }}">
+                                    <i class="glyphicon glyphicon-pencil"></i>
+                                </a>
+                            </td>
+                            <td>
+                                {!! Form::open(['class'=>'horizontal',
+                                                'method' => 'DELETE',
+                                                'route'=>['articles.destroy',
+                                                $article]]) !!}
+                                {{ Form::hidden('id', $article->id) }}
+                                {{ Form::submit('X', ['class' => 'btn btn-danger btn-sm']) }}
+                                {{ Form::close() }}
                             </td>
                         </tr>
                     @endforeach

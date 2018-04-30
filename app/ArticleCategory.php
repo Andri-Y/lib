@@ -21,12 +21,13 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $na
  * @method static \Illuminate\Database\Eloquent\Builder|\App\ArticleCategory whereNa($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\ArticleCategory whereName($value)
+ * @property-read \App\Article $articles
  */
 class ArticleCategory extends Model
 {
     protected $fillable = ['value'];
     //
-    public function article(){
+    public function articles(){
         return $this->belongsTo(Article::class);
     }
 }

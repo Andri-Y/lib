@@ -77,6 +77,12 @@ class ArticleController extends Controller implements CRUDMethods
 
     public function edit($object)
     {
-        // TODO: Implement edit() method.
+        $article = Article::whereId($object)->with('photos')->firstOrFail();
+        $article_category = ArticleCategory::whereId($article->category_id)->firstOrFail();
+        return view('admin.articles.edit')->
+        with([
+            'article'=> $article,
+            'article_category'=> $article_category
+        ]);
     }
 }
