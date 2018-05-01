@@ -1,3 +1,7 @@
 $(document).ready(function() {
-        $('#example').dataTable();
+    $('#articles_table').DataTable( {
+        scrollY:        '50vh',
+        scrollCollapse: true,
+        paging:         false
+    } );
 } );

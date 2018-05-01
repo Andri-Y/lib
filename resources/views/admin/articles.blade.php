@@ -9,6 +9,7 @@
     <link href="{{URL::asset('bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
     <!-- styles -->
     <link href="{{URL::asset('css/admin/styles.css')}}" rel="stylesheet">
+    <link href="{{URL::asset('https://maxcdn.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css')}}" rel="stylesheet">
 @endsection
 @section('profile')
     <li class="dropdown">

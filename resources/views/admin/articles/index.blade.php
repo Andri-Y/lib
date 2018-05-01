@@ -1,5 +1,14 @@
 @extends('admin.articles')
 
+@section('styles')
+    <!-- Bootstrap -->
+    <link href="{{URL::asset('bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+    <!-- styles -->
+    <link href="{{URL::asset('css/admin/styles.css')}}" rel="stylesheet">
+    {{--<link href="{{URL::asset('js/admin/datatables/css/articles_table.css')}}" rel="stylesheet">--}}
+    <link href="{{URL::asset('https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css')}}" rel="stylesheet">
+@endsection
+
 @section('content')
         <div class="col-md-9">
             <div class="row">
@@ -63,7 +72,8 @@
                                 {{$category->value}}
                             </td>
                             <td>
-                                <a class="btn btn-warning btn-sm" href="{{  route('article_categories.edit', $category->id) }}">
+                                <a class="btn btn-warning btn-sm"
+                                   href="{{  route('article_categories.edit', $category->id) }}">
                                     <i class="glyphicon glyphicon-pencil"></i>
                                 </a>
                             </td>
@@ -85,7 +95,7 @@
         </div>
         <div class="row" style="margin-bottom: 20px; background-color: rgba(255,255,255,0.8)">
             <div class="col-md-10">
-                <div class="btn-group" style="margin-left: 120px;">
+                <div class="btn-group" style="margin: 20px 120px;">
                     <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
                         Додати <span class="caret"></span>
                     </button>
@@ -99,7 +109,7 @@
         </div>
         <div class="row">
         <div class="col-md-12">
-            <table class="table table-striped table-bordered table-hover" id="TablePost">
+            <table id="articles_table" class="table table-striped table-bordered display" style="width:100%">
                 <thead>
                     <tr>
                         <th>Заголовок</th>
@@ -118,7 +128,7 @@
                             <td>
                                 {{ $article->created_at->format('d.m.Y \o\ H:i') }}
                             </td>
-                                                        <td>
+                            <td>
                                 {{ $article->updated_at->format('d.m.Y \o\ H:i') }}
                             </td>
 
@@ -147,6 +157,9 @@
 
 @section('scripts')
     <script src="{{URL::asset('https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js')}}"></script>
+    <script src="{{URL::asset('https://code.jquery.com/ui/1.10.3/jquery-ui.js')}}"></script>
     <script src="{{URL::asset('bootstrap/js/bootstrap.min.js')}}"></script>
+    <script src="{{URL::asset('js/admin/datatables/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{URL::asset('js/admin/tables.js')}}"></script>
     <script src="{{URL::asset('js/admin/custom.js')}}"></script>
 @stop
