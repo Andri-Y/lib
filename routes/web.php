@@ -95,10 +95,6 @@
 
         Route::resource('article_categories','ArticleCategoryController');
         Route::resource('articles','ArticleController');
-        Route::get('/articles/create/{id}', [
-            'as'=>'articles.createByCategory',
-            'uses'=>'ArticleController@createByCategory'
-        ]);
         Route::post('articles/add/image',[
             'as' => 'articles.add.image',
             'uses' => 'ArticleController@saveImages'

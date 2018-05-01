@@ -57,13 +57,9 @@ class ArticleController extends Controller implements CRUDMethods
     }
     public function create()
     {
-    }
-    public function createByCategory($id)
-    {
-        $category = ArticleCategory::whereId($id)->firstOrFail();
+        $category = ArticleCategory::whereId(request()->get('id'))->firstOrFail();
         return view('admin.articles.create')->with('category', $category);
     }
-
     public function destroy($object)
     {
         $article = Article::find($object)->with('photos')->firstOrFail();

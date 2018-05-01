@@ -100,7 +100,12 @@
                     </button>
                     <ul class="dropdown-menu" role="menu">
                         @foreach($article_categories as $category)
-                        <li><a href="{{route('articles.createByCategory', $category->id)}}">{{$category->name}}</a></li>
+                            {!! Form::open(['class'=>'horizontal',
+                                               'method' => 'get',
+                                               'route'=>['articles.create']]) !!}
+                            {{ Form::hidden('id', $category->id) }}
+                            {{ Form::submit($category->name, ['class' => 'btn-link category_link']) }}
+                            {{ Form::close() }}
                         @endforeach
                     </ul>
                 </div>
