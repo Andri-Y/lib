@@ -62,7 +62,23 @@ class ArticleController extends Controller implements CRUDMethods
 
     public function destroy($object)
     {
-        // TODO: Implement destroy() method.
+        $article = Article::whereId($object)->with('photos')->firstOrFail();
+        $photos = $article->photos()->get();
+        foreach ($photos as $photo){
+
+            $photo->articles()->detach($article);
+            Storage::delete($photo->path);
+            Photo::destroy($photo->id);
+
+        }
+
+        Article::destroy($article->id);
+
+//        dd($article);
+        return redirect()->route('articles.index');
+
+
+
     }
 
     public function update($object)
