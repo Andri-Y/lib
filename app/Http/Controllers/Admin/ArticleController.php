@@ -62,7 +62,7 @@ class ArticleController extends Controller implements CRUDMethods
     }
     public function destroy($object)
     {
-        $article = Article::find($object)->with('photos')->firstOrFail();
+        $article = Article::whereId($object)->with('photos')->firstOrFail();
         $photos = $article->photos()->get();
         foreach ($photos as $photo){
 

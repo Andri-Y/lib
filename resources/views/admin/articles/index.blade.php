@@ -101,11 +101,11 @@
                     <ul class="dropdown-menu" role="menu">
                         @foreach($article_categories as $category)
                             {!! Form::open(['class'=>'horizontal',
-                                               'method' => 'get',
-                                               'route'=>['articles.create']]) !!}
+                                            'method' => 'get',
+                                            'route'=>['articles.create']]) !!}
                             {{ Form::hidden('id', $category->id) }}
-                            {{ Form::submit($category->name, ['class' => 'btn-link category_link']) }}
-                            {{ Form::close() }}
+                            {{ Form::submit($category->name, ['class' => 'btn-link']) }}
+                            {{ Form::close() }}todo restyle link to text
                         @endforeach
                     </ul>
                 </div>
@@ -147,7 +147,6 @@
                                                 'method' => 'DELETE',
                                                 'route'=>['articles.destroy',
                                                 $article]]) !!}
-                                {{ Form::hidden('article', $article) }}
                                 {{ Form::submit('X', ['class' => 'btn btn-danger btn-sm']) }}
                                 {{ Form::close() }}
                             </td>
