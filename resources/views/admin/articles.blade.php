@@ -4,13 +4,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 @endsection
-@section('styles')
-    <!-- Bootstrap -->
-    <link href="{{URL::asset('bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
-    <!-- styles -->
-    <link href="{{URL::asset('css/admin/styles.css')}}" rel="stylesheet">
-    <link href="{{URL::asset('https://maxcdn.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css')}}" rel="stylesheet">
-@endsection
 @section('profile')
     <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Адміністратор</a>

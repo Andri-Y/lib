@@ -5,8 +5,7 @@
     <link href="{{URL::asset('bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
     <!-- styles -->
     <link href="{{URL::asset('css/admin/styles.css')}}" rel="stylesheet">
-    {{--<link href="{{URL::asset('js/admin/datatables/css/articles_table.css')}}" rel="stylesheet">--}}
-    <link href="{{URL::asset('https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css')}}" rel="stylesheet">
+    <link href="{{URL::asset('js/admin/DataTables/datatables.min.css')}}" rel="stylesheet">
 @endsection
 
 @section('content')
@@ -159,7 +158,8 @@
     <script src="{{URL::asset('https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js')}}"></script>
     <script src="{{URL::asset('https://code.jquery.com/ui/1.10.3/jquery-ui.js')}}"></script>
     <script src="{{URL::asset('bootstrap/js/bootstrap.min.js')}}"></script>
-    <script src="{{URL::asset('js/admin/datatables/js/jquery.dataTables.min.js')}}"></script>
+    <script> const langPath = "{{ URL::asset('js/admin/DataTables/locale/dataTables.ukrainian.lang') }}";</script>
+    <script src="{{URL::asset('js/admin/DataTables/datatables.js')}}"></script>
     <script src="{{URL::asset('js/admin/tables.js')}}"></script>
     <script src="{{URL::asset('js/admin/custom.js')}}"></script>
 @stop

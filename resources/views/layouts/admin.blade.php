@@ -107,7 +107,5 @@
     </div>
 </footer>
 @yield('scripts')
-<!-- HTTPS required. HTTP will give a 403 forbidden response -->
-<script src="{{URL::asset('https://sdk.accountkit.com/en_US/sdk.js')}}"></script>
 </body>
 </html>
