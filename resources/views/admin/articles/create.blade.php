@@ -106,13 +106,11 @@
     <script type="text/javascript" src="{{URL::asset('js/admin/imagerJs/dist/imagerJs.min.js')}}"></script>
     <script type="text/javascript" src="{{URL::asset('js/admin/imagerJs/ImagerJsConfig.js')}}"></script>
     <script type="text/javascript" src="{{URL::asset('js/admin/imagerJs/ImagerJsLocalization.js')}}"></script>
-    {{--<script>
-        jQuery(document).ready(function($) {
+    <script>
             $('#tags').magicSuggest({
                 cls: 'form-control'
             });
-        });
-    </script>--}}
+    </script>
     <script>
         $('#trumbowyg').trumbowyg({
             lang: 'ua',
@@ -133,7 +131,7 @@
         // apply german translations
         ImagerJs.translations.set(window.ImagerJsGerman);
 
-        var pluginsConfig = {
+        let pluginsConfig = {
             Crop: {
                 controlsCss: {
                     width: '15px',
@@ -150,55 +148,63 @@
             },
             Save: {
                 upload: true,
-                uploadFunction: function (imageId, imageData, callback){
-                        // Here should be the code to upload image somewhere
-                        // to Azure, Amazon S3 or similar. When upload completes we will have
-                        // the url of uploaded image. Then call the function callback(image_url)
-                        // to notify ImagerJs that image has been uploaded to the server
-                        //
-                        // Make sure that returned path is on the same domain that imagerJs was loaded from
-                        // or contains proper access-control headers.
+                uploadFunction: function (imageId, imageData, callback) {
+                    // Here should be the code to upload image somewhere
+                    // to Azure, Amazon S3 or similar. When upload completes we will have
+                    // the url of uploaded image. Then call the function callback(image_url)
+                    // to notify ImagerJs that image has been uploaded to the server
+                    //
+                    // Make sure that returned path is on the same domain that imagerJs was loaded from
+                    // or contains proper access-control headers.
 
-                    var data = imageData.replace(/^data:image\/(png|jpg|jpeg);base64,/, '');
-                    var dataJson = '{ "imageId": "' + imageId + '", "imageData" : "' + data + '" }';
+                    let data = imageData.replace(/^data:image\/(png|jpg|jpeg);base64,/, '');
+                    let dataJson = '{ "imageId": "' + imageId + '", "imageData" : "' + data + '" }';
 
                     $.ajax({
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
                         url: '{{route('articles.add.image')}}',
-                        dataType: 'json',
-                        data: dataJson,
-                        contentType: 'application/json; charset=utf-8',
-                        type: 'POST',
-                        success: function(imageUrl) {
-                            callback(imageUrl);
-                        },
+                        dataType:
+                            'json',
+                        data:
+                        dataJson,
+                        contentType:
+                            'application/json; charset=utf-8',
+                        type:
+                            'POST',
+                        success:
+
+                            function (imageUrl) {
+                                callback(imageUrl);
+                            }
+
+                        ,
                         error: function (xhr, status, error) {
                             console.error(error);
                         }
-                    });
+                    })
+                    ;
                 }
             }
         };
 
-        var options = {
+        let options = {
             plugins: ['Rotate', 'Crop', 'Resize', 'Toolbar', 'Save', 'Delete', 'Undo'],
-            editModeCss: {
-            },
+            editModeCss: {},
             pluginsConfig: pluginsConfig,
             quality: {
                 sizes: [
-                    { label: 'Original', scale: 1, quality: 1, percentage: 100 },
-                    { label: 'Large', scale: 0.5, quality: 0.5, percentage: 50 },
-                    { label: 'Medium', scale: 0.2, quality: 0.2, percentage: 20 },
-                    { label: 'Small', scale: 0.05, quality: 0.05, percentage: 5 }
+                    {label: 'Original', scale: 1, quality: 1, percentage: 100},
+                    {label: 'Large', scale: 0.5, quality: 0.5, percentage: 50},
+                    {label: 'Medium', scale: 0.2, quality: 0.2, percentage: 20},
+                    {label: 'Small', scale: 0.05, quality: 0.05, percentage: 5}
                 ]
             }
         };
 
-        var addNew = function () {
-            var $imageContainer = $(
+        let addNew = function () {
+            let $imageContainer = $(
                 '<div class="image-container">' +
                 '  <img class="imager-test" ' +
                 '       src="" ' +
@@ -206,7 +212,7 @@
                 '</div>');
 
             $('#imagers').append($imageContainer);
-            var imager = new ImagerJs.Imager($imageContainer.find('img'), options);
+            let imager = new ImagerJs.Imager($imageContainer.find('img'), options);
             imager.startSelector();
 
             imager.on('editStart', function () {
@@ -215,9 +221,9 @@
                     minWidth: 'auto',
                     minHeight: 'auto'
                 });
-                var qualitySelector = new window.ImagerQualitySelector(imager, options.quality);
+                let qualitySelector = new window.ImagerQualitySelector(imager, options.quality);
 
-                var qualityContainer = $('<div class="imager-quality-standalone"></div>');
+                let qualityContainer = $('<div class="imager-quality-standalone"></div>');
                 qualityContainer.append(qualitySelector.getElement());
 
                 imager.$editContainer.append(qualityContainer);

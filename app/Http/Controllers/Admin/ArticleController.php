@@ -21,7 +21,11 @@ class ArticleController extends Controller implements CRUDMethods
     }
     public function store()
     {
-        $article = new Article(['header'=>request()->input('header')]);
+        if(Article::whereId(request()->input('article_id'))->exists()){
+            $article = Article::whereId(request()->input('article_id'))->first();
+        }else{
+            $article = new Article(['header'=>request()->input('header')]);
+        }
         $article->category_id = request()->input('category_id');
         $article->header = request()->input('header');
         $article->preview = substr(request()->input('preview'),0,155);
@@ -62,7 +66,7 @@ class ArticleController extends Controller implements CRUDMethods
 
     public function destroy($object)
     {
-        $article = Article::whereId($object)->with('photos')->firstOrFail();
+        $article = Article::find($object)->with('photos')->firstOrFail();
         $photos = $article->photos()->get();
         foreach ($photos as $photo){
 

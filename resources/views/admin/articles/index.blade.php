@@ -142,7 +142,7 @@
                                                 'method' => 'DELETE',
                                                 'route'=>['articles.destroy',
                                                 $article]]) !!}
-                                {{ Form::hidden('id', $article->id) }}
+                                {{ Form::hidden('article', $article) }}
                                 {{ Form::submit('X', ['class' => 'btn btn-danger btn-sm']) }}
                                 {{ Form::close() }}
                             </td>

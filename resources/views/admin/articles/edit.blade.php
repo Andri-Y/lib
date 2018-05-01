@@ -22,6 +22,7 @@
 @section('content')
     <div class="col-md-9">
         {!! Form::open(['route' => 'articles.store']) !!}
+        {!! Form::hidden('article_id',$article->id) !!}
         <div class="row">
             <div class="col-lg-12">
                 <div class="panel panel-success">
@@ -62,7 +63,7 @@
                 </div>
             </div>
             <div class="col-lg-12">
-                {!! Form::hidden('id', $article_category->id) !!}
+                {!! Form::hidden('category_id', $article_category->id) !!}
                 <div class="form-group">
                     {!! Form::textarea('preview',  $article->preview,
                                                ['class' => 'form-control',
