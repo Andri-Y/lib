@@ -90,7 +90,7 @@ class ArticleController extends Controller implements CRUDMethods
     {
         // TODO: Implement show() method.
     }
-
+    //
     public function edit($object)
     {
         $article = Article::whereId($object)->with('photos')->firstOrFail();
