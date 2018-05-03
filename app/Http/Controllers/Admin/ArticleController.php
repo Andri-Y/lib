@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Article;
 use App\ArticleCategory;
 use App\Photo;
+use App\Tag;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Storage;
@@ -57,8 +58,13 @@ class ArticleController extends Controller implements CRUDMethods
     }
     public function create()
     {
+
+        $tags = Tag::all();
         $category = ArticleCategory::whereId(request()->get('id'))->firstOrFail();
-        return view('admin.articles.create')->with('category', $category);
+        return view('admin.articles.create')->with([
+            'category'=> $category,
+            'tags'=>$tags
+        ]);
     }
     public function destroy($object)
     {
@@ -93,12 +99,16 @@ class ArticleController extends Controller implements CRUDMethods
     //
     public function edit($object)
     {
-        $article = Article::whereId($object)->with('photos')->firstOrFail();
+        $article = Article::whereId($object)->with(['tags','photos'])->firstOrFail();
         $article_category = ArticleCategory::whereId($article->category_id)->firstOrFail();
+        $tags = $article->tags()->get();
+        $photos = $article->photos()->get();
         return view('admin.articles.edit')->
         with([
+            'article_category'=> $article_category,
             'article'=> $article,
-            'article_category'=> $article_category
+            'tags'=>$tags,
+            'photos'=>$photos
         ]);
     }
 }

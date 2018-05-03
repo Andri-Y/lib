@@ -9,6 +9,7 @@
     <link href="{{URL::asset('css/admin/styles.css')}}" rel="stylesheet">
     <link href="{{URL::asset('js/admin/imagerJs/dist/imagerJs.min.css')}}" rel="stylesheet">
     <link href="{{URL::asset('js/admin/wysiwyg/ui/trumbowyg.min.css')}}" rel="stylesheet">
+    <link href="{{URL::asset('js/admin/magicSuggest/magicsuggest-min.css')}}" rel="stylesheet">
     <style>
         #imagers {
             /*margin-top: 50px;
@@ -51,7 +52,7 @@
                                            name="tags"
                                            id="tags"
                                            class="form-control"
-                                           placeholder="додайте ключові слова до цієї {{$category->name}}">
+                                          placeholder="">
                                 </div>
                             </div>
                         </div>
@@ -106,9 +107,19 @@
     <script type="text/javascript" src="{{URL::asset('js/admin/imagerJs/dist/imagerJs.min.js')}}"></script>
     <script type="text/javascript" src="{{URL::asset('js/admin/imagerJs/ImagerJsConfig.js')}}"></script>
     <script type="text/javascript" src="{{URL::asset('js/admin/imagerJs/ImagerJsLocalization.js')}}"></script>
+    <script type="text/javascript" src="{{URL::asset('js/admin/magicSuggest/magicsuggest-min.js')}}"></script>
+        <script>console.log({!!$tags!!})</script>
     <script>
             $('#tags').magicSuggest({
-                cls: 'form-control'
+                cls: 'form-control',
+                data: tags,
+                @if (count(old('tags')))
+                value: [
+                    @foreach (old('tags') as $tag)
+                        {{$tag}},
+                    @endforeach
+                ]
+                @endif
             });
     </script>
     <script>
@@ -128,7 +139,6 @@
         });
     </script>
     <script>
-        // apply german translations
         ImagerJs.translations.set(window.ImagerJsGerman);
 
         let pluginsConfig = {

@@ -105,7 +105,7 @@
                                             'route'=>['articles.create']]) !!}
                             {{ Form::hidden('id', $category->id) }}
                             {{ Form::submit($category->name, ['class' => 'btn-link']) }}
-                            {{ Form::close() }}todo restyle link to text
+                            {{ Form::close() }}{{--todo restyle link to text--}}
                         @endforeach
                     </ul>
                 </div>
