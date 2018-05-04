@@ -52,7 +52,7 @@
                                            name="tags"
                                            id="tags"
                                            class="form-control"
-                                          placeholder="">
+                                          placeholder="додайте ключові слова до цієї {{$category->name}}">
                                 </div>
                             </div>
                         </div>
