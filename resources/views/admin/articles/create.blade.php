@@ -100,23 +100,23 @@
 @endsection
 
 @section('scripts')
-    <script src="{{URL::asset('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')}}"></script>
-    <script>window.jQuery || document.write('<script src="js/jquery-3.3.1.min.js"><\/script>')</script>
+    <script src="{{URL::asset('https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js')}}"></script>
     <script src="{{URL::asset('js/admin/wysiwyg/trumbowyg.min.js')}}"></script>
     <script type="text/javascript" src="{{URL::asset('js/admin/wysiwyg/langs/ua.min.js')}}"></script>
     <script type="text/javascript" src="{{URL::asset('js/admin/imagerJs/dist/imagerJs.min.js')}}"></script>
+{{--
     <script type="text/javascript" src="{{URL::asset('js/admin/imagerJs/ImagerJsConfig.js')}}"></script>
+--}}
     <script type="text/javascript" src="{{URL::asset('js/admin/imagerJs/ImagerJsLocalization.js')}}"></script>
     <script type="text/javascript" src="{{URL::asset('js/admin/magicSuggest/magicsuggest-min.js')}}"></script>
-        <script>console.log({!!$tags!!})</script>
     <script>
             $('#tags').magicSuggest({
                 cls: 'form-control',
-                data: tags,
+                data: {!!$tags!!},
                 @if (count(old('tags')))
                 value: [
                     @foreach (old('tags') as $tag)
-                        {{$tag}},
+                        '{{$tag->value}}'
                     @endforeach
                 ]
                 @endif
@@ -139,6 +139,7 @@
         });
     </script>
     <script>
+        // apply german translations
         ImagerJs.translations.set(window.ImagerJsGerman);
 
         let pluginsConfig = {
