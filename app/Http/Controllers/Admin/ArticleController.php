@@ -32,6 +32,18 @@ class ArticleController extends Controller implements CRUDMethods
         $article->preview = substr(request()->input('preview'),0,155);
         $article->main_text = request()->input('main_text');
         $article->save();
+        $tags = request()->get('tags');
+        foreach ($tags as $tag_value) {
+            if(Tag::whereValue($tag_value)->exists()){
+                $tag = Tag::whereValue($tag_value)->firstOrFail();
+                $article->tags()->attach($tag);
+            }else{
+                $tag = new Tag();
+                $tag->value = $tag_value;
+                $tag->save();
+                $article->tags()->attach($tag);
+            }
+        }
         $photos = Photo::whereIsAttached(false)->get();
         foreach ($photos as $photo) {
             $photo->is_attached = true;
@@ -58,29 +70,21 @@ class ArticleController extends Controller implements CRUDMethods
     }
     public function create()
     {
-
-        $tags = Tag::all();
+        $tags = Tag::groupBy('value')->pluck('value');
         $category = ArticleCategory::whereId(request()->get('id'))->firstOrFail();
-        return view('admin.articles.create')->with([
-            'category'=> $category,
-            'tags'=>$tags
-        ]);
+        return view('admin.articles.create', compact('category', 'tags'));
     }
     public function destroy($object)
     {
         $article = Article::whereId($object)->with('photos')->firstOrFail();
         $photos = $article->photos()->get();
         foreach ($photos as $photo){
-
             $photo->articles()->detach($article);
             Storage::delete($photo->path);
             Photo::destroy($photo->id);
 
         }
-
         Article::destroy($article->id);
-
-//        dd($article);
         return redirect()->route('articles.index');
 
 
