@@ -9,6 +9,7 @@
     <link href="{{URL::asset('css/admin/styles.css')}}" rel="stylesheet">
     <link href="{{URL::asset('js/admin/imagerJs/dist/imagerJs.min.css')}}" rel="stylesheet">
     <link href="{{URL::asset('js/admin/wysiwyg/ui/trumbowyg.min.css')}}" rel="stylesheet">
+    <link href="{{URL::asset('js/admin/magicSuggest/magicsuggest-min.css')}}" rel="stylesheet">
     <style>
         #imagers {
             /*margin-top: 50px;
@@ -30,10 +31,10 @@
                         <h5>Для  редагування {{ $article_category->name }}:</h5>
                         <ol>
                             <li> Змініть текстові дані</li>
-                            <li> Видаліть застарілі,або погані фотографії</li>
+                            <li> Видаліть застарілі,або чи неактуальні фотографії</li>
                             <li> Прикірпіть фотографію</li>
                             <li> Відредагуйте і збережіть фотографію</li>
-                            <li> Для додавання декількох фотографій - повторіть операції 2 і 3</li>
+                            <li> Для додавання декількох фотографій - повторіть операції 3 і 4</li>
                             <li> Збережіть статтю, натиснувши кнопку "Зберегти"</li>
                         </ol>
                     </div>
@@ -80,7 +81,7 @@
         {!! Form::close() !!}
         <div class="row">
             <div class="col-md-14">
-                @foreach($article->photos as $photo)
+                @foreach($article->photos()->get() as $photo)
                     <div class="thumbnail">
                             <img src="{{$photo->path}}" style="width:100%">
                             <div class="caption">
@@ -117,20 +118,31 @@
         @endsection
 
         @section('scripts')
-            <script src="{{URL::asset('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')}}"></script>
-            <script>window.jQuery || document.write('<script src="js/jquery-3.3.1.min.js"><\/script>')</script>
+            <script src="{{URL::asset('https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js')}}"></script>
             <script src="{{URL::asset('js/admin/wysiwyg/trumbowyg.min.js')}}"></script>
             <script type="text/javascript" src="{{URL::asset('js/admin/wysiwyg/langs/ua.min.js')}}"></script>
             <script type="text/javascript" src="{{URL::asset('js/admin/imagerJs/dist/imagerJs.min.js')}}"></script>
-            <script type="text/javascript" src="{{URL::asset('js/admin/imagerJs/ImagerJsConfig.js')}}"></script>
+            {{--<script type="text/javascript" src="{{URL::asset('js/admin/imagerJs/ImagerJsConfig.js')}}"></script>--}}
             <script type="text/javascript" src="{{URL::asset('js/admin/imagerJs/ImagerJsLocalization.js')}}"></script>
-            {{--<script>
-                jQuery(document).ready(function($) {
-                    $('#tags').magicSuggest({
-                        cls: 'form-control'
-                    });
+            <script type="text/javascript" src="{{URL::asset('js/admin/magicSuggest/magicsuggest-min.js')}}"></script>
+            <script>
+                const allTags = [@foreach ($tags as $tag) '{{$tag}}', @endforeach];
+                let ownTags = [@foreach ($article->tags()->get() as $tag) '{{$tag->value}}', @endforeach];
+                let tags = $('#tags').magicSuggest({
+                    cls: 'form-control',
+                    data: allTags,
+                    @if (count(old('tags')))
+                    value: [
+                        @foreach (old('tags') as $tag)
+                            {{$tag->value}}
+                        @endforeach
+                    ]
+                    @endif
                 });
-            </script>--}}
+                @if(count($article->tags()->get()))
+                tags.setValue(ownTags);
+                @endif
+            </script>
             <script>
                 $('#trumbowyg').trumbowyg({
                     lang: 'ua',
@@ -151,7 +163,7 @@
                 // apply german translations
                 ImagerJs.translations.set(window.ImagerJsGerman);
 
-                var pluginsConfig = {
+                const pluginsConfig = {
                     Crop: {
                         controlsCss: {
                             width: '15px',
@@ -168,7 +180,7 @@
                     },
                     Save: {
                         upload: true,
-                        uploadFunction: function (imageId, imageData, callback){
+                        uploadFunction: function (imageId, imageData, callback) {
                             // Here should be the code to upload image somewhere
                             // to Azure, Amazon S3 or similar. When upload completes we will have
                             // the url of uploaded image. Then call the function callback(image_url)
@@ -177,46 +189,55 @@
                             // Make sure that returned path is on the same domain that imagerJs was loaded from
                             // or contains proper access-control headers.
 
-                            var data = imageData.replace(/^data:image\/(png|jpg|jpeg);base64,/, '');
-                            var dataJson = '{ "imageId": "' + imageId + '", "imageData" : "' + data + '" }';
+                            const data = imageData.replace(/^data:image\/(png|jpg|jpeg);base64,/, '');
+                            const dataJson = '{ "imageId": "' + imageId + '", "imageData" : "' + data + '" }';
 
                             $.ajax({
                                 headers: {
                                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                                 },
-                                url: '{{route('articles.add.image')}}',
-                                dataType: 'json',
-                                data: dataJson,
-                                contentType: 'application/json; charset=utf-8',
-                                type: 'POST',
-                                success: function(imageUrl) {
-                                    callback(imageUrl);
-                                },
+                                url: '{{route('articles.add.image
+                            ')}}',
+                                dataType:
+                                    'json',
+                                data:
+                                dataJson,
+                                contentType:
+                                    'application/json; charset=utf-8',
+                                type:
+                                    'POST',
+                                success:
+
+                                    function (imageUrl) {
+                                        callback(imageUrl);
+                                    }
+
+                                ,
                                 error: function (xhr, status, error) {
                                     console.error(error);
                                 }
-                            });
+                            })
+                            ;
                         }
                     }
                 };
 
-                var options = {
+                const options = {
                     plugins: ['Rotate', 'Crop', 'Resize', 'Toolbar', 'Save', 'Delete', 'Undo'],
-                    editModeCss: {
-                    },
+                    editModeCss: {},
                     pluginsConfig: pluginsConfig,
                     quality: {
                         sizes: [
-                            { label: 'Original', scale: 1, quality: 1, percentage: 100 },
-                            { label: 'Large', scale: 0.5, quality: 0.5, percentage: 50 },
-                            { label: 'Medium', scale: 0.2, quality: 0.2, percentage: 20 },
-                            { label: 'Small', scale: 0.05, quality: 0.05, percentage: 5 }
+                            {label: 'Original', scale: 1, quality: 1, percentage: 100},
+                            {label: 'Large', scale: 0.5, quality: 0.5, percentage: 50},
+                            {label: 'Medium', scale: 0.2, quality: 0.2, percentage: 20},
+                            {label: 'Small', scale: 0.05, quality: 0.05, percentage: 5}
                         ]
                     }
                 };
 
-                var addNew = function () {
-                    var $imageContainer = $(
+                let addNew = function () {
+                    let $imageContainer = $(
                         '<div class="image-container">' +
                         '  <img class="imager-test" ' +
                         '       src="" ' +
@@ -224,7 +245,7 @@
                         '</div>');
 
                     $('#imagers').append($imageContainer);
-                    var imager = new ImagerJs.Imager($imageContainer.find('img'), options);
+                    let imager = new ImagerJs.Imager($imageContainer.find('img'), options);
                     imager.startSelector();
 
                     imager.on('editStart', function () {
@@ -233,9 +254,9 @@
                             minWidth: 'auto',
                             minHeight: 'auto'
                         });
-                        var qualitySelector = new window.ImagerQualitySelector(imager, options.quality);
+                        let qualitySelector = new window.ImagerQualitySelector(imager, options.quality);
 
-                        var qualityContainer = $('<div class="imager-quality-standalone"></div>');
+                        let qualityContainer = $('<div class="imager-quality-standalone"></div>');
                         qualityContainer.append(qualitySelector.getElement());
 
                         imager.$editContainer.append(qualityContainer);

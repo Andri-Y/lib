@@ -70,9 +70,9 @@ class ArticleController extends Controller implements CRUDMethods
     }
     public function create()
     {
-        $tags = Tag::groupBy('value')->pluck('value');
         $category = ArticleCategory::whereId(request()->get('id'))->firstOrFail();
-        return view('admin.articles.create', compact('category', 'tags'));
+        $tags = Tag::groupBy('value')->pluck('value');
+        return view('admin.articles.create', compact(['category', 'tags']));
     }
     public function destroy($object)
     {
@@ -105,14 +105,7 @@ class ArticleController extends Controller implements CRUDMethods
     {
         $article = Article::whereId($object)->with(['tags','photos'])->firstOrFail();
         $article_category = ArticleCategory::whereId($article->category_id)->firstOrFail();
-        $tags = $article->tags()->get();
-        $photos = $article->photos()->get();
-        return view('admin.articles.edit')->
-        with([
-            'article_category'=> $article_category,
-            'article'=> $article,
-            'tags'=>$tags,
-            'photos'=>$photos
-        ]);
+        $tags = Tag::groupBy('value')->pluck('value');
+        return view('admin.articles.edit', compact(['article_category','article', 'tags']));
     }
 }
