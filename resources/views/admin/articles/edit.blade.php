@@ -147,7 +147,7 @@
                 $('#trumbowyg').trumbowyg({
                     lang: 'ua',
                     btns: [
-                        ['undo', 'redo'], // Only supported in Blink browsers
+                        ['undo', 'redo'],
                         ['formatting'],
                         ['strong', 'em'],
                         ['link'],
