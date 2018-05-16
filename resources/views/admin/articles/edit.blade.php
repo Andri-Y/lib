@@ -160,9 +160,7 @@
                 });
             </script>
             <script>
-                // apply german translations
                 ImagerJs.translations.set(window.ImagerJsGerman);
-
                 const pluginsConfig = {
                     Crop: {
                         controlsCss: {
@@ -181,17 +179,9 @@
                     Save: {
                         upload: true,
                         uploadFunction: function (imageId, imageData, callback) {
-                            // Here should be the code to upload image somewhere
-                            // to Azure, Amazon S3 or similar. When upload completes we will have
-                            // the url of uploaded image. Then call the function callback(image_url)
-                            // to notify ImagerJs that image has been uploaded to the server
-                            //
-                            // Make sure that returned path is on the same domain that imagerJs was loaded from
-                            // or contains proper access-control headers.
-
                             let data = imageData.replace(/^data:image\/(png|jpg|jpeg);base64,/, '');
                             let dataJson = '{ "imageId": "' + imageId + '", "imageData" : "' + data + '" }';
-
+                            //
                             $.ajax({
                                 headers: {
                                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -206,11 +196,9 @@
                                 type:
                                     'POST',
                                 success:
-
                                     function (imageUrl) {
                                         callback(imageUrl);
                                     }
-
                                 ,
                                 error: function (xhr, status, error) {
                                     console.error(error);
@@ -220,7 +208,6 @@
                         }
                     }
                 };
-
                 const options = {
                     plugins: ['Rotate', 'Crop', 'Resize', 'Toolbar', 'Save', 'Delete', 'Undo'],
                     editModeCss: {},
@@ -234,7 +221,6 @@
                         ]
                     }
                 };
-
                 let addNew = function () {
                     let $imageContainer = $(
                         '<div class="image-container">' +
