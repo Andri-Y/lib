@@ -189,15 +189,14 @@
                             // Make sure that returned path is on the same domain that imagerJs was loaded from
                             // or contains proper access-control headers.
 
-                            const data = imageData.replace(/^data:image\/(png|jpg|jpeg);base64,/, '');
-                            const dataJson = '{ "imageId": "' + imageId + '", "imageData" : "' + data + '" }';
+                            let data = imageData.replace(/^data:image\/(png|jpg|jpeg);base64,/, '');
+                            let dataJson = '{ "imageId": "' + imageId + '", "imageData" : "' + data + '" }';
 
                             $.ajax({
                                 headers: {
                                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                                 },
-                                url: '{{route('articles.add.image
-                            ')}}',
+                                url: '{{route('articles.add.image')}}',
                                 dataType:
                                     'json',
                                 data:
