@@ -133,15 +133,11 @@
                     data: allTags,
                     @if (count(old('tags')))
                     value: [
-                        @foreach (old('tags') as $tag)
-                            {{$tag->value}}
-                        @endforeach
+                        @foreach (old('tags') as $tag) {{$tag->value}} @endforeach
                     ]
                     @endif
                 });
-                @if(count($article->tags()->get()))
-                tags.setValue(ownTags);
-                @endif
+                @if(count($article->tags()->get())) tags.setValue(ownTags); @endif
             </script>
             <script>
                 $('#trumbowyg').trumbowyg({
