@@ -7,7 +7,7 @@ use App\Book;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class IndexController extends Controller
+class IndexController extends Controller implements PubMethods
 {
     //
     public function index(){
@@ -22,5 +22,15 @@ class IndexController extends Controller
             ->with('news', $news)
             ->with('anniversaries',$anniversaries)
             ->with('books', $books);
+    }
+
+    public function show($object)
+    {
+        // TODO: Implement show() method.
+    }
+
+    public function details($object)
+    {
+        // TODO: Implement details() method.
     }
 }

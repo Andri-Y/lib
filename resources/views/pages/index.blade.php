@@ -9,7 +9,7 @@
                     <div class="thumbnail">
 
                         <div class="caption">
-                            <a href="#">{{$news_item->header}}</a>
+                            <a href="/{{$news_item->slug}}">{{$news_item->header}}</a>
                             <hr>
                             <img class="img-responsive" src="{{Storage::url($news_item->main_image)}}"/>
                             <h6>{{$news_item->updated_at->format('d.m.y')}}</h6>
