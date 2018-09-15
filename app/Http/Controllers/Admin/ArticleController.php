@@ -33,7 +33,7 @@ class ArticleController extends Controller implements CRUDMethods
         $article->main_text = request()->input('main_text');
         $article->save();
         $tags = request()->get('tags');
-        foreach ($tags as $tag_value) {
+        /*foreach ($tags as $tag_value) {
             if(Tag::whereValue($tag_value)->exists()){
                 $tag = Tag::whereValue($tag_value)->firstOrFail();
                 $article->tags()->attach($tag);
@@ -43,11 +43,12 @@ class ArticleController extends Controller implements CRUDMethods
                 $tag->save();
                 $article->tags()->attach($tag);
             }
-        }
+        }*/
         $photos = Photo::whereIsAttached(false)->get();
         foreach ($photos as $photo) {
             $photo->is_attached = true;
             $photo->save();
+            $article->main_image = $article->main_image ? $article->main_image : $photo->path;
             $nulArticle= new Article();
             $nulArticle->photos()->detach($photo);
             $article->photos()->attach($photo);
@@ -58,7 +59,7 @@ class ArticleController extends Controller implements CRUDMethods
     {
         $image = request()->get('imageData');
         $fullName = md5(time() . uniqid()) . ".jpg";
-        $path = 'images/' . $fullName;
+        $path = 'photos/news/' . date('d.m.Y') . '/' . $fullName;
         Storage::disk('public')->put($path, base64_decode($image));
         $photo = new Photo();
         $photo->path = Storage::url($path);

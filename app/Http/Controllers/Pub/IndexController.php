@@ -13,9 +13,11 @@ class IndexController extends Controller implements PubMethods
     public function index(){
         $news = Article::whereCategoryId('1')
             ->with('photos')
+            ->orderByDesc('created_at')
             ->get();
         $anniversaries = Article::whereCategoryId('2')
             ->with('photos')
+            ->orderByDesc('created_at')
             ->get();
         $books = Book::all();
         return view('pages.index')

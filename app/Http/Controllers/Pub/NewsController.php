@@ -34,7 +34,7 @@ class NewsController extends Controller implements PubMethods
     public function details($object)
     {
         //
-        $news_item = Article::with('photos')->with('videos')->whereSlug($object)->firstOrFail();
+        $news_item = Article::whereSlug($object)->with('photos','videos')->firstOrFail();
         //protecting own slug exception
         if ($news_item!=null){
             return view('public.articles.single')->

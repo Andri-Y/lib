@@ -10,6 +10,32 @@
 
 namespace App{
 /**
+ * App\User
+ *
+ * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
+ * @mixin \Eloquent
+ * @property int $id
+ * @property string $email
+ * @property string $password
+ * @property string $username
+ * @property int $superuser
+ * @property string|null $remember_token
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User wherePassword($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereRememberToken($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereSuperuser($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereUsername($value)
+ */
+	class User extends \Eloquent {}
+}
+
+namespace App{
+/**
  * App\Book
  *
  * @property int $id
@@ -44,6 +70,27 @@ namespace App{
 
 namespace App{
 /**
+ * App\Video
+ *
+ * @property int $id
+ * @property string $value
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Article[] $articles
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Tag[] $tags
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Video whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Video whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Video whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Video whereValue($value)
+ * @mixin \Eloquent
+ * @property string $link
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Video whereLink($value)
+ */
+	class Video extends \Eloquent {}
+}
+
+namespace App{
+/**
  * App\Event
  *
  * @property int $id
@@ -74,6 +121,31 @@ namespace App{
 
 namespace App{
 /**
+ * App\Author
+ *
+ * @property int $id
+ * @property string $value
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Book[] $books
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Tag[] $tags
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Author whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Author whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Author whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Author whereValue($value)
+ * @mixin \Eloquent
+ * @property string $slug
+ * @property string $name
+ * @property string|null $bio
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Author whereBio($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Author whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Author whereSlug($value)
+ */
+	class Author extends \Eloquent {}
+}
+
+namespace App{
+/**
  * App\Tag
  *
  * @property int $id
@@ -96,6 +168,49 @@ namespace App{
 
 namespace App{
 /**
+ * App\BookCategory
+ *
+ * @property int $id
+ * @property string $value
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
+ * @property-read \App\Book $books
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\BookCategory whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\BookCategory whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\BookCategory whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\BookCategory whereValue($value)
+ * @mixin \Eloquent
+ */
+	class BookCategory extends \Eloquent {}
+}
+
+namespace App{
+/**
+ * App\Edition
+ *
+ * @property int $id
+ * @property string $value
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Book[] $books
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Tag[] $tags
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Edition whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Edition whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Edition whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Edition whereValue($value)
+ * @mixin \Eloquent
+ * @property string $slug
+ * @property string $name
+ * @property string|null $info
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Edition whereInfo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Edition whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Edition whereSlug($value)
+ */
+	class Edition extends \Eloquent {}
+}
+
+namespace App{
+/**
  * App\Language
  *
  * @property int $id
@@ -113,49 +228,6 @@ namespace App{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Language whereSlug($value)
  */
 	class Language extends \Eloquent {}
-}
-
-namespace App{
-/**
- * App\ArticleCategory
- *
- * @property int $id
- * @property string $value
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
- * @property-read \App\Article $article
- * @method static \Illuminate\Database\Eloquent\Builder|\App\ArticleCategory whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\ArticleCategory whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\ArticleCategory whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\ArticleCategory whereValue($value)
- * @mixin \Eloquent
- * @property string $name
- * @property int $na
- * @method static \Illuminate\Database\Eloquent\Builder|\App\ArticleCategory whereNa($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\ArticleCategory whereName($value)
- */
-	class ArticleCategory extends \Eloquent {}
-}
-
-namespace App{
-/**
- * App\Video
- *
- * @property int $id
- * @property string $value
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Article[] $articles
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Tag[] $tags
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Video whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Video whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Video whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Video whereValue($value)
- * @mixin \Eloquent
- * @property string $link
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Video whereLink($value)
- */
-	class Video extends \Eloquent {}
 }
 
 namespace App{
@@ -202,74 +274,25 @@ namespace App{
 
 namespace App{
 /**
- * App\Photo
+ * App\ArticleCategory
  *
  * @property int $id
  * @property string $value
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Article[] $articles
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Book[] $books
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Tag[] $tags
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Photo whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Photo whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Photo whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Photo whereValue($value)
+ * @property-read \App\Article $article
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ArticleCategory whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ArticleCategory whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ArticleCategory whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ArticleCategory whereValue($value)
  * @mixin \Eloquent
- * @property string $image
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Photo whereImage($value)
- * @property int $is_main
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Photo whereIsMain($value)
- * @property string $path
- * @property int $isAttached
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Photo whereIsAttached($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Photo wherePath($value)
- * @property int $is_attached
- */
-	class Photo extends \Eloquent {}
-}
-
-namespace App{
-/**
- * App\Author
- *
- * @property int $id
- * @property string $value
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Book[] $books
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Tag[] $tags
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Author whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Author whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Author whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Author whereValue($value)
- * @mixin \Eloquent
- * @property string $slug
  * @property string $name
- * @property string|null $bio
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Author whereBio($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Author whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Author whereSlug($value)
+ * @property int $na
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ArticleCategory whereNa($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ArticleCategory whereName($value)
+ * @property-read \App\Article $articles
  */
-	class Author extends \Eloquent {}
-}
-
-namespace App{
-/**
- * App\BookCategory
- *
- * @property int $id
- * @property string $value
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
- * @property-read \App\Book $books
- * @method static \Illuminate\Database\Eloquent\Builder|\App\BookCategory whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\BookCategory whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\BookCategory whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\BookCategory whereValue($value)
- * @mixin \Eloquent
- */
-	class BookCategory extends \Eloquent {}
+	class ArticleCategory extends \Eloquent {}
 }
 
 namespace App{
@@ -299,52 +322,30 @@ namespace App{
 
 namespace App{
 /**
- * App\Edition
+ * App\Photo
  *
  * @property int $id
  * @property string $value
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Article[] $articles
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Book[] $books
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Tag[] $tags
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Edition whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Edition whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Edition whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Edition whereValue($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Photo whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Photo whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Photo whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Photo whereValue($value)
  * @mixin \Eloquent
- * @property string $slug
- * @property string $name
- * @property string|null $info
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Edition whereInfo($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Edition whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Edition whereSlug($value)
+ * @property string $image
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Photo whereImage($value)
+ * @property int $is_main
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Photo whereIsMain($value)
+ * @property string $path
+ * @property int $isAttached
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Photo whereIsAttached($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Photo wherePath($value)
+ * @property int $is_attached
  */
-	class Edition extends \Eloquent {}
-}
-
-namespace App{
-/**
- * App\User
- *
- * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
- * @mixin \Eloquent
- * @property int $id
- * @property string $email
- * @property string $password
- * @property string $username
- * @property int $superuser
- * @property string|null $remember_token
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereEmail($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\User wherePassword($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereRememberToken($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereSuperuser($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereUsername($value)
- */
-	class User extends \Eloquent {}
+	class Photo extends \Eloquent {}
 }
 

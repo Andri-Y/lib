@@ -5,11 +5,16 @@
 
             <div class="row">
             @foreach($news as $news_item)
+                    @php
+                            $photos = $news_item->photos();
+                            foreach ($photos as $photo){
+                                $news_item->main_image = $news_item ->main_image ? $news_item->main_image : $photo->path;
+                            }
+                    @endphp
                 <div class="col-sm-6 col-md-4 news-item">
                     <div class="thumbnail">
-
                         <div class="caption">
-                            <a href="/{{$news_item->slug}}">{{$news_item->header}}</a>
+                            <a href="{{$news_item->slug}}">{{$news_item->header}}</a>
                             <hr>
                             <img class="img-responsive" src="{{Storage::url($news_item->main_image)}}"/>
                             <h6>{{$news_item->updated_at->format('d.m.y')}}</h6>
@@ -28,11 +33,16 @@
 @section('anniversaries')
         @foreach($anniversaries as $anniversary)
             <div class="item {{ $anniversary == $anniversaries->first() ? 'active' : '' }}">
-                <img class="img-responsive anniversary" src="{{Storage::url($anniversary->main_image)}}"/>
-                <div class="carousel-caption">
-                    <h6 style="color:black; font-size: 20px">{{str_replace('-', '.',$anniversary->anniversary)}}</h6>
-                    <br>
-                    <p style="color:black; font-size: 22px">{{$anniversary->preview}}</p>
+                <div class="row">
+                    <div class="col-md-6">
+                        <img class="img-responsive anniversary" src="{{Storage::url($anniversary->main_image)}}"/>
+
+                    </div>
+                    <div class="col-md-6">
+                            <h6 style="color:black; font-size: 20px">{{str_replace('-', '.',$anniversary->anniversary)}}</h6>
+                            <br>
+                            <p style="color:black; font-size: 22px">{{$anniversary->preview}}</p>
+                    </div>
                 </div>
             </div>
         @endforeach   

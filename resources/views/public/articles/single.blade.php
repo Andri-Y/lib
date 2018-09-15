@@ -173,12 +173,13 @@ google fonts:
                     <div id="news-item-carousel" class="carousel slide col-md-6 col-sm-4 col-xs-6" data-ride="carousel">
                         <div class="carousel-inner" role="listbox">
                             @foreach($news_item->photos as $photo)
-                                <div class="item {{ $photo->image == $news_item->main_image ? 'active' : '' }}">
-                                    <a class="thumbnail fancybox" rel="ligthbox" href="{{Storage::url($photo->image)}}">
-                                        <img class="img-responsive" alt="" src="{{Storage::url($photo->image)}}" />
+                                <div class="item @if($news_item->photos->first() === $photo){{'active'}}@endif">
+                                    <a class="thumbnail fancybox" rel="ligthbox" href="{{Storage::url($photo->path)}}">
+                                        <img class="img-responsive" alt="" src="{{Storage::url($photo->path)}}" />
                                     </a>
                                 </div>
                             @endforeach
+
                         </div>
                         <!-- controls -->
                         <a class="left carousel-control" href="#news-item-carousel" role="button" data-slide="prev">
