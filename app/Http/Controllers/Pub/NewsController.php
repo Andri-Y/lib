@@ -7,7 +7,7 @@ use App\Book;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class NewsController extends Controller
+class NewsController extends Controller implements PubMethods
 {
     /**
      * Display a listing of news to users.
@@ -24,70 +24,23 @@ class NewsController extends Controller
      */
     public function show($slug)
     {
+       return null;
+    }
+
+    /**
+     * Show article object.
+
+     */
+    public function details($object)
+    {
         //
-        $news_item = Article::with('photos')->with('videos')->whereSlug($slug)->firstOrFail();
-        //protecting own slug exeption
+        $news_item = Article::with('photos')->with('videos')->whereSlug($object)->firstOrFail();
+        //protecting own slug exception
         if ($news_item!=null){
-            return view('layouts.news')->
+            return view('public.articles.single')->
             with('news_item',$news_item);
 
         }
         return redirect('/');
-    }
-
-    /**
-     * Show the form for creating a new news object.
-     *
-     * @return void
-     */
-    public function create()
-    {
-        //
-
-    }
-
-    /**
-     * Store a newly created news object with main image and tags in storage.
-     *
-     * @return void
-     */
-    public function store(Request $request)
-    {
-
-    }
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     *
-     * @return void
-     */
-    public function edit($id)
-    {
-
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param int $id
-     *
-     * @return void
-     */
-    public function update(Request $request, $id)
-    {
-
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param int $id
-     *
-     * @return void
-     */
-    public function destroy($id)
-    {
-
     }
 }

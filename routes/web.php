@@ -18,6 +18,8 @@
     Route::group(['namespace'=>'Pub', 'middleware'=>'guest'],function (){
             Route::get('/',['as'=>'index','uses'=>'IndexController@index']);
             //
+            Route::get('/{slug}','NewsController@details');
+
             Route::resource('message','VirtualReferenceController');
             //
             Route::get('it_center',function (){
