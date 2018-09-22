@@ -48,7 +48,7 @@ class ArticleController extends Controller implements CRUDMethods
         foreach ($photos as $photo) {
             $photo->is_attached = true;
             $photo->save();
-            $article->main_image = $article->main_image ? $article->main_image : $photo->path;
+            $article->main_image = $photo->path;
             $nulArticle= new Article();
             $nulArticle->photos()->detach($photo);
             $article->photos()->attach($photo);
@@ -62,7 +62,12 @@ class ArticleController extends Controller implements CRUDMethods
         $path = 'photos/news/' . date('d.m.Y') . '/' . $fullName;
         Storage::disk('public')->put($path, base64_decode($image));
         $photo = new Photo();
-        $photo->path = Storage::url($path);
+        $tmp_path = Storage::url($path);
+        if(startsWith($tmp_path,'/storage/')){
+            $photo->path = substr($tmp_path, 9, strlen($tmp_path));
+        }else{
+            $photo->path = $tmp_path;
+        }
         $photo->is_attached = false;
         $photo->save();
         $article = new Article();

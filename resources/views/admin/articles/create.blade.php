@@ -139,9 +139,6 @@
         });
     </script>
     <script>
-        // apply german translations
-        ImagerJs.translations.set(window.ImagerJsGerman);
-
         let pluginsConfig = {
             Crop: {
                 controlsCss: {
@@ -176,20 +173,14 @@
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
                         url: '{{route('articles.add.image')}}',
-                        dataType:
-                            'json',
-                        data:
-                        dataJson,
-                        contentType:
-                            'application/json; charset=utf-8',
-                        type:
-                            'POST',
-                        success:
-
-                            function (imageUrl) {
-                                callback(imageUrl);
+                        dataType: 'json',
+                        data: dataJson,
+                        contentType: 'application/json; charset=utf-8',
+                        type: 'POST',
+                        success: function (image_url) {
+                                window.history.pushState(image_url,'','/storage/');
+                                return callback(image_url);
                             }
-
                         ,
                         error: function (xhr, status, error) {
                             console.error(error);

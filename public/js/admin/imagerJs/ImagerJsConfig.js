@@ -43,7 +43,7 @@ var pluginsConfig = {
     }
 };
 
-var imagerOptions = {
+let imagerOptions = {
     plugins: ['Rotate', 'Crop', 'Resize', 'Toolbar', 'Save', 'Delete'],
     waitingCursor: 'wait', // for predefined css cursors
     editModeCss: {
@@ -61,7 +61,7 @@ var imagerOptions = {
         allowCustomSetting: false
     }
 };
-var redactorConfig = {
+let redactorConfig = {
     plugins: ['ImagerJs'],
     ImagerJs: {
         contentConfig: {

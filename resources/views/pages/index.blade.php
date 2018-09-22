@@ -5,18 +5,22 @@
 
             <div class="row">
             @foreach($news as $news_item)
-                    @php
-                            $photos = $news_item->photos();
-                            foreach ($photos as $photo){
-                                $news_item->main_image = $news_item ->main_image ? $news_item->main_image : $photo->path;
-                            }
-                    @endphp
                 <div class="col-sm-6 col-md-4 news-item">
                     <div class="thumbnail">
                         <div class="caption">
                             <a href="{{$news_item->slug}}">{{$news_item->header}}</a>
                             <hr>
-                            <img class="img-responsive" src="{{Storage::url($news_item->main_image)}}"/>
+                            <img class="img-responsive"
+                                 @if($news_item->main_image === '')
+                                    @foreach($news_item->photos as $photo)
+                                        @if($news_item->photos->first() === $photo)
+                                        src="{{Storage::url($photo->path)}}"
+                                         @endif
+                                    @endforeach
+                                 @else
+                                 src="{{Storage::url($news_item->main_image)}}"
+                                 @endif
+                            />
                             <h6>{{$news_item->updated_at->format('d.m.y')}}</h6>
                             <p>
                                {{$news_item->preview}}
@@ -35,7 +39,7 @@
             <div class="item {{ $anniversary == $anniversaries->first() ? 'active' : '' }}">
                 <div class="row">
                     <div class="col-md-6">
-                        <img class="img-responsive anniversary" src="{{Storage::url($anniversary->main_image)}}"/>
+                        <img class="img-responsive anniversary" src="{{URL::asset($anniversary->main_image)}}"/>
 
                     </div>
                     <div class="col-md-6">

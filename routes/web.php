@@ -97,7 +97,7 @@
 
         Route::resource('article_categories','ArticleCategoryController');
         Route::resource('articles','ArticleController');
-        Route::post('articles/add/image',[
+        Route::post('add/image',[
             'as' => 'articles.add.image',
             'uses' => 'ArticleController@saveImages'
         ]);
