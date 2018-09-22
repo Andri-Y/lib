@@ -2,12 +2,11 @@
 {{----}}
 @section('news')
     @if (count($news) > 0)
-
-            <div class="row">
+            <div class="col-md-12">
             @foreach($news as $news_item)
                 <div class="col-sm-6 col-md-4 news-item">
                     <div class="thumbnail">
-                        <div class="caption">
+                        <div class="caption" >
                             <a href="{{$news_item->slug}}">{{$news_item->header}}</a>
                             <hr>
                             <img class="img-responsive"
