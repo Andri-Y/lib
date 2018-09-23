@@ -29,7 +29,7 @@
                 </div>
             @endforeach
             </div>
-
+            {{$news->links()}}
     @endif
 @endsection
 {{----}}

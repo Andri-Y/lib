@@ -14,7 +14,7 @@ class IndexController extends Controller implements PubMethods
         $news = Article::whereCategoryId('1')
             ->with('photos')
             ->orderByDesc('created_at')
-            ->get();
+            ->paginate(9);
         $anniversaries = Article::whereCategoryId('2')
             ->with('photos')
             ->orderByDesc('created_at')
